@@ -10,10 +10,10 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author zhh
@@ -23,7 +23,7 @@ public class HttpClientUtil {
 
     private HttpClientUtil() {}
 
-    public static byte[] postRequest(String reqURL, byte[] date) throws Exception {
+    public static byte[] postRequest(String reqURL, byte[] dataBytes, Map<String, String> headerMap) throws Exception {
         byte[] responseBytes = null;
         HttpPost httpPost = new HttpPost(reqURL);
         CloseableHttpClient httpClient = HttpClients.custom().disableAutomaticRetries().build();
@@ -35,9 +35,12 @@ public class HttpClientUtil {
                     .setConnectTimeout(10000)
                     .build();
             httpPost.setConfig(requestConfig);
-            if (date != null) {
-                httpPost.setEntity(new ByteArrayEntity(date, ContentType.DEFAULT_BINARY));
+            if (Objects.nonNull(dataBytes)) {
+                httpPost.setEntity(new ByteArrayEntity(dataBytes, ContentType.DEFAULT_BINARY));
             }
+            headerMap.forEach((k, v) -> {
+                httpPost.setHeader(k, v);
+            });
 
             HttpResponse response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();

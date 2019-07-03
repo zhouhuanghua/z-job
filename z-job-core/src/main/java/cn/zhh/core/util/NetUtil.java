@@ -5,19 +5,19 @@
 
 package cn.zhh.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
-import java.util.Enumeration;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+/**
+ * TODO
+ *
+ * @author z_hh
+ */
 @Slf4j
 public class NetUtil {
 

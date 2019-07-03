@@ -1,15 +1,16 @@
 package cn.zhh.core.starter;
 
-import cn.zhh.core.annotation.JobHandler;
 import cn.zhh.core.handler.IJobHandler;
+import cn.zhh.core.util.HttpClientUtil;
 import cn.zhh.core.util.NetUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 
-import java.util.Iterator;
+import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -40,8 +41,27 @@ public class JobExecutor {
 
     public void init() {
         // 启动监听服务
+        String ip = NetUtil.getIp();
         int availablePort = NetUtil.getAvailablePort(port);
-        MonitorServer.newInstance(availablePort).start();
+        MonitorServer.newInstance(ip, port).start();
+
+        // 将地址注册到调度中心
+        String dataStr = new StringBuilder()
+            .append("{\"").append("appName\":\"").append(appName).append("\",")
+            .append("\"address\":\"").append(ip).append(":").append(availablePort).append("\"}")
+            .toString();
+        Map<String, String> headerMap = new HashMap<>(1);
+        headerMap.put("Content-Type", "application/json");
+        try {
+            byte[] bytes = HttpClientUtil.postRequest(adminAddress, dataStr.getBytes(Charset.defaultCharset()), headerMap);
+            String r = new String(bytes);
+            if (Objects.nonNull(bytes) && bytes.length > 0) {
+                String result = Objects.equals(new String(bytes, Charset.defaultCharset()), "OK") ? "成功" : "失败";
+                log.info("应用注册到任务调度中心，结果：{}", result);
+            }
+        } catch (Exception e) {
+            log.warn("应用注册到任务调度中心失败！", e);
+        }
     }
 
     public void destroy() {

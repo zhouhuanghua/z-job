@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/z-job.iml" filepath="$PROJECT_DIR$/z-job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/z-job-admin/z-job-admin.iml" filepath="$PROJECT_DIR$/z-job-admin/z-job-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/z-job-core/z-job-core.iml" filepath="$PROJECT_DIR$/z-job-core/z-job-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/z-job-example/z-job-example.iml" filepath="$PROJECT_DIR$/z-job-example/z-job-example.iml" />
+    </modules>
+  </component>
+</project>

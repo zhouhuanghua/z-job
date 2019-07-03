@@ -4,7 +4,6 @@ import cn.zhh.core.annotation.JobHandler;
 import cn.zhh.core.handler.IJobHandler;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -15,6 +14,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 import java.util.Objects;
@@ -47,6 +47,10 @@ public class JobAutoConfiguration implements EnvironmentAware, ApplicationContex
         JobExecutor jobExecutor = new JobExecutor();
         // 设置adminAddress、appName、port
         jobExecutor.setAdminAddress(Objects.requireNonNull(jobConfig.getAdminAddress(), "配置z.job.adminAddress不能为空！"));
+        String appName = Optional.ofNullable(jobConfig.getAppName()).orElse(environment.getProperty("spring.application.name"));
+        if (StringUtils.isEmpty(appName)) {
+            throw new RuntimeException("请配置参数-》z.job.appName");
+        }
         jobExecutor.setAppName(Optional.ofNullable(jobConfig.getAppName()).orElse(environment.getProperty("spring.application.name")));
         jobExecutor.setPort(Optional.ofNullable(jobConfig.getPort()).orElse(11111));
         // 加载IJobHandler
