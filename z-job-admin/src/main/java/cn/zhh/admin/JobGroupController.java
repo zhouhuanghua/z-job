@@ -27,15 +27,13 @@ public class JobGroupController {
     private JobGroupService jobGroupService;
 
     @PostMapping("/auto_register")
-    public String autoRegister(@RequestBody Map<String, String> paramMap) {
+    public void autoRegister(@RequestBody Map<String, String> paramMap) {
         JobGroup jobGroup = new JobGroup();
         jobGroup.setAppName(paramMap.get("appName"));
-        jobGroup.setTitle(jobGroup.getAppName());
+        jobGroup.setTitle(paramMap.get("appDesc"));
         jobGroup.setAddressType(JobGroupAddressTypeEnum.AUTO.getCode());
         jobGroup.setAddressList(paramMap.get("address"));
 
         jobGroupService.insert(jobGroup);
-
-        return "OK";
     }
 }

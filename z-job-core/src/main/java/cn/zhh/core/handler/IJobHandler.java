@@ -1,5 +1,10 @@
 package cn.zhh.core.handler;
 
+/**
+ * TODO
+ *
+ * @author zhh
+ */
 public abstract class IJobHandler {
 
     public IJobHandler() {}

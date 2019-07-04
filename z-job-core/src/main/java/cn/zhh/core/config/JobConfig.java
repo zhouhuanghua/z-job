@@ -1,8 +1,12 @@
-package cn.zhh.core.starter;
+package cn.zhh.core.config;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * TODO
+ *
+ * @author zhh
+ */
 @Data
 public class JobConfig {
 
@@ -14,4 +18,7 @@ public class JobConfig {
 
     private String appDesc;
 
+    private String ip;
+
+    private Integer port;
 }

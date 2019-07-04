@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 任务调用请求参数
  *
- * @author z_hh
+ * @author zhh
  */
 @Data
 public class JobInvokeReq implements Serializable {

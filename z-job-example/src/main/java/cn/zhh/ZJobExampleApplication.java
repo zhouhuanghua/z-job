@@ -1,15 +1,25 @@
 package cn.zhh;
 
-import cn.zhh.core.EnableJobAutoConfiguration;
+import cn.zhh.core.annotation.EnableJobAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableJobAutoConfiguration
+@EnableJobAutoConfiguration(adminIp = "127.0.0.1",
+	adminPort = 8080,
+	appName = "example",
+	appDesc = "实例定时器")
 public class ZJobExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZJobExampleApplication.class, args);
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 
 }
