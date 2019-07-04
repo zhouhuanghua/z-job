@@ -26,9 +26,6 @@ import java.util.Optional;
  * @author Zhou Huanghua
  * @date 2019/7/3 15:58
  */
-@Configuration
-@EnableConfigurationProperties({JobConfig.class})
-@ConditionalOnClass({JobConfig.class})
 @Slf4j
 public class JobAutoConfiguration implements EnvironmentAware, ApplicationContextAware {
     @Autowired

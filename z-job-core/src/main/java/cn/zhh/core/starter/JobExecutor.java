@@ -21,10 +21,16 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class JobExecutor {
+
     @Getter @Setter
     private String adminAddress;
+
     @Getter @Setter
     private String appName;
+
+    @Getter @Setter
+    private String appDesc;
+
     @Getter @Setter
     private Integer port;
 
@@ -42,8 +48,7 @@ public class JobExecutor {
     public void init() {
         // 启动监听服务
         String ip = NetUtil.getIp();
-        int availablePort = NetUtil.getAvailablePort(port);
-        MonitorServer.newInstance(ip, port).start();
+        int availablePort = 8888;
 
         // 将地址注册到调度中心
         String dataStr = new StringBuilder()

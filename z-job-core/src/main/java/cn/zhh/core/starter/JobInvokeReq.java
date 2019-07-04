@@ -5,13 +5,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 任务请求
+ * 任务调用请求参数
  *
  * @author z_hh
- * @date 2019/7/3
  */
 @Data
-public class JobRequest implements Serializable {
+public class JobInvokeReq implements Serializable {
+    public static final long serialVersionUID = 42L;
 
     private String name;
 

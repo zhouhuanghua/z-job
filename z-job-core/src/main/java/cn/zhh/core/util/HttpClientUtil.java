@@ -30,9 +30,9 @@ public class HttpClientUtil {
 
         try {
             RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectionRequestTimeout(10000)
-                    .setSocketTimeout(10000)
-                    .setConnectTimeout(10000)
+                    .setConnectionRequestTimeout(30_000)
+                    .setSocketTimeout(10_000)
+                    .setConnectTimeout(10_000)
                     .build();
             httpPost.setConfig(requestConfig);
             if (Objects.nonNull(dataBytes)) {
