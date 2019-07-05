@@ -1,6 +1,7 @@
 package cn.zhh.admin.service;
 
 import cn.zhh.admin.entity.JobGroup;
+import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
 
 /**
@@ -20,4 +21,6 @@ public interface JobGroupService {
     Result<?> deleteById(Long id);
 
     void removeAddressByAppName(String appName, String address);
+
+    Result<Page<JobGroup>> queryByPage(Integer pageNum, Integer pageSize);
 }

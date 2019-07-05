@@ -2,10 +2,11 @@ package cn.zhh.admin.service;
 
 import cn.zhh.admin.dao.JobGroupDao;
 import cn.zhh.admin.entity.JobGroup;
+import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -108,6 +109,15 @@ public class JobGroupServiceImpl implements JobGroupService {
                 log.info("应用{}移除了地址{}！", appName, address);
             }
         }
+    }
+
+    @Override
+    public Result<Page<JobGroup>> queryByPage(Integer pageNum, Integer pageSize) {
+        // 第一页是0
+        org.springframework.data.domain.Page<JobGroup> originalPage = dao
+                .findAll(PageRequest.of(pageNum - 1, pageSize, Sort.by(Sort.Order.asc("sort"))));
+        Page<JobGroup> page = Page.parse(originalPage);
+        return Result.ok(page);
     }
 
     private JobGroup save(JobGroup jobGroup) {

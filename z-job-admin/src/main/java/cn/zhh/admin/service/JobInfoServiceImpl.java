@@ -6,16 +6,22 @@ import cn.zhh.admin.entity.JobInfo;
 import cn.zhh.admin.enums.EnableEnum;
 import cn.zhh.admin.job.JobInvoker;
 import cn.zhh.admin.job.QuartzJob;
+import cn.zhh.admin.rsp.JobInfoPageQueryRsp;
+import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
 import cn.zhh.admin.util.RandomGetUtils;
 import cn.zhh.core.handler.JobInvokeRsp;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -115,8 +121,8 @@ public class JobInfoServiceImpl implements JobInfoService {
 
         // 传递一些数据到任务里面
         JobDataMap jobDataMap = jobDetail.getJobDataMap();
-        jobDataMap.put("jobInfo", "jobInfo");
-        jobDataMap.put("jobGroup", "jobGroup");
+        jobDataMap.put("jobGroup", jobGroup);
+        jobDataMap.put("jobInfo", jobInfo);
 
         // 把作业和触发器注册到任务调度中
         try {
@@ -192,5 +198,30 @@ public class JobInfoServiceImpl implements JobInfoService {
             log.error("关闭定时任务异常：{}", e.getMessage(), e);
             return Result.err("关闭定时任务异常！");
         }
+    }
+
+    @Override
+    public Result<Page<JobInfoPageQueryRsp>> queryByPage(Integer pageNum, Integer pageSize) {
+        // 第一页是0
+        org.springframework.data.domain.Page<JobInfo> originalPage = dao
+                .findAll(PageRequest.of(pageNum - 1, pageSize, Sort.by(Sort.Order.asc("jobGroup"))));
+        // 转换
+        Page<JobInfoPageQueryRsp> page = Page.parse(originalPage).recoreConvert(r -> {
+            JobInfoPageQueryRsp queryRsp = new JobInfoPageQueryRsp();
+            BeanUtils.copyProperties(r, queryRsp, "appName");
+            // 设置任务组appName
+            Result<JobGroup> jobGroupResult = jobGroupService.getById(r.getJobGroup());
+            if (jobGroupResult.isOk()) {
+                queryRsp.setAppName(jobGroupResult.get().getAppName());
+            }
+            return queryRsp;
+        });
+        return Result.ok(page);
+    }
+
+    @Override
+    public List<JobInfo> queryAll() {
+        List<JobInfo> jobInfoList = dao.findAll();
+        return jobInfoList;
     }
 }

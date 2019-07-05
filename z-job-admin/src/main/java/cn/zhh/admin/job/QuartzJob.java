@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Date;
 
 @Component
 public class QuartzJob implements Job {
@@ -30,7 +29,7 @@ public class QuartzJob implements Job {
         JobGroup jobGroup = (JobGroup) jobDataMap.get("jobGroup");
         JobInfo jobInfo = (JobInfo) jobDataMap.get("jobInfo");
 
-        JobLog jobLog = new JobLog();
+        /*JobLog jobLog = new JobLog();
         jobLog.setJobGroup(jobGroup.getId());
         jobLog.setJobId(jobInfo.getId());
         jobLog.setExecutorAddress();
@@ -41,13 +40,13 @@ public class QuartzJob implements Job {
         jobLog.setTriggerCode();
         jobLog.setHandleTime();
         jobLog.setHandleCode();
-        jobLog.setAlarmStatus();
+        jobLog.setAlarmStatus();*/
     }
 
     private void jobRun(JobGroup jobGroup, JobInfo jobInfo, JobLog jobLog) {
 
         // 随机获取执行器地址
         String address = RandomGetUtils.random(Arrays.asList(jobGroup.getAddressList().split(",")));
-        jobInvoker.invoke(address, )
+//        jobInvoker.invoke(address, )
     }
 }

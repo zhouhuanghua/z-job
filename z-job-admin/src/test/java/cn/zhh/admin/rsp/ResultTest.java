@@ -2,11 +2,11 @@ package cn.zhh.admin.rsp;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class ResultTest {
     @Test
     public void ok() throws Exception {
+        Result result = Result.ok();
+        System.out.println(result);
     }
 
     @Test

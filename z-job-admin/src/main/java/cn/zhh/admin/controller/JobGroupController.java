@@ -4,6 +4,7 @@ import cn.zhh.admin.entity.JobGroup;
 import cn.zhh.admin.enums.JobGroupAddressTypeEnum;
 import cn.zhh.admin.req.JobGroupAddReq;
 import cn.zhh.admin.req.JobGroupModifyReq;
+import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
 import cn.zhh.admin.service.JobGroupService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,13 @@ public class JobGroupController {
     @Autowired
     private JobGroupService jobGroupService;
 
+    @GetMapping("/page_query")
+    public Result<Page<JobGroup>> pageQuery(@RequestParam(required = false, defaultValue = "1") Integer pageNum,
+                                            @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
+        Result<Page<JobGroup>> pageResult = jobGroupService.queryByPage(pageNum, pageSize);
+        return pageResult;
+    }
+
     @PostMapping("/auto_register")
     public void autoRegister(@RequestBody Map<String, String> paramMap) {
         JobGroup jobGroup = new JobGroup();
@@ -40,8 +48,8 @@ public class JobGroupController {
         jobGroupService.insert(jobGroup);
     }
 
-    @PostMapping("/manual_add")
-    public Result<JobGroup> manualAdd(@RequestBody JobGroupAddReq addReq) {
+    @PostMapping(value = "/manual_add")
+    public Result<JobGroup> manualAdd(JobGroupAddReq addReq) {
         JobGroup jobGroup = new JobGroup();
         jobGroup.setAppName(addReq.getAppName());
         jobGroup.setTitle(addReq.getTitle());

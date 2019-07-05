@@ -1,10 +1,12 @@
 package cn.zhh.admin.rsp;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@ToString
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 6547662806723050209L;
@@ -16,9 +18,13 @@ public class Result<T> implements Serializable {
     @Getter
     private String msg;
     @Getter
-    private T context;
+    private T content;
 
-    private Result(Integer code, String msg, T context) {}
+    private Result(Integer code, String msg, T content) {
+        this.code = code;
+        this.msg = msg;
+        this.content = content;
+    }
 
     public static <T> Result<T> ok() {
         return new Result<>(SUCCESS, null, (T)null);
@@ -28,12 +34,12 @@ public class Result<T> implements Serializable {
         return new Result<>(SUCCESS, msg, (T)null);
     }
 
-    public static <T> Result<T> ok(T context) {
-        return new Result<>(SUCCESS, null, context);
+    public static <T> Result<T> ok(T content) {
+        return new Result<>(SUCCESS, null, content);
     }
 
-    public static <T> Result<T> ok(String msg, T context) {
-        return new Result<>(SUCCESS, msg, context);
+    public static <T> Result<T> ok(String msg, T content) {
+        return new Result<>(SUCCESS, msg, content);
     }
 
     public static <T> Result<T> err() {
@@ -56,6 +62,6 @@ public class Result<T> implements Serializable {
         if (isErr()) {
             throw new UnsupportedOperationException("result is error!");
         }
-        return this.context;
+        return this.content;
     }
 }

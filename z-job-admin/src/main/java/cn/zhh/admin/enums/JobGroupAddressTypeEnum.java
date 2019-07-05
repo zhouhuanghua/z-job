@@ -5,7 +5,7 @@ import lombok.Getter;
 public enum JobGroupAddressTypeEnum {
 
     AUTO((byte)0, "自动注册"),
-    MANUAL((byte)0, "手动录入");
+    MANUAL((byte)1, "手动录入");
 
     @Getter
     private Byte code;

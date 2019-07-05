@@ -1,7 +1,11 @@
 package cn.zhh.admin.service;
 
 import cn.zhh.admin.entity.JobInfo;
+import cn.zhh.admin.rsp.JobInfoPageQueryRsp;
+import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
+
+import java.util.List;
 
 /**
  * TODO
@@ -24,4 +28,8 @@ public interface JobInfoService {
     Result run(Long id);
 
     Result disable(Long id);
+
+    Result<Page<JobInfoPageQueryRsp>> queryByPage(Integer pageNum, Integer pageSize);
+
+    List<JobInfo> queryAll();
 }
