@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>任务组列表</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <script src="/lib/vue/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div align="right">
+        <button type="button" class="btn btn-info" @click="add()">添加任务组</button>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>执行器名称</th>
+            <th>执行器描述</th>
+            <th>添加类型</th>
+            <th>机器地址列表</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item, index) of page.records" :key="index">
+            <td>{{index + 1}}</td>
+            <td>{{item.appName}}</td>
+            <td>{{item.title}}</td>
+            <td v-text="addressTypeConvert(item.addressType, item.addressType)"></td>
+            <td>{{item.addressList}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div align="right">
+        共找到<span style="font-size: xx-large">{{page.total}}</span>条记录！
+    </div>
+
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" @click="query(page.current-1)">上一页</a></li>
+
+        <li class="page-item" v-for="index of page.pages" :key="index">
+            <a class="page-link" @click="query(index)">{{index}}</a>
+        </li>
+        <li class="page-item"><a class="page-link" @click="query(page.current+1)">下一页</a></li>
+    </ul>
+
+</div>
+<script>
+    new Vue({
+        el: ".container",
+        mounted: function () {
+            this.query(1);
+        },
+        data: {
+            page: {
+                'current': 1,
+                'pages': 0,
+                'records': [],
+                'size': 10,
+                'total': 0
+            }
+        },
+        methods: {
+            query: function (pageNum) {
+                var _this = this;
+                if (pageNum < 1 || (pageNum > this.page.pages && this.page.pages != 0)) return;
+                axios.get('/job/group/page_query', {
+                    params: {
+                        pageNum: pageNum,
+                        pageSize: _this.page.size
+                    }
+                })
+                    .then(function (response) {
+                        var data = response.data;
+                        if (data.code == 200) {
+                            _this.page = data.content;
+                        } else {
+                            alert(data.msg);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            add: function () {
+                window.location.href="./add.html";
+            },
+            addressTypeConvert: function (key, defaultVal) {
+                switch (key) {
+                    case 0:
+                        return "自动注册";
+                    case 1:
+                        return "手动添加";
+                    default:
+                        return defaultVal;
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
