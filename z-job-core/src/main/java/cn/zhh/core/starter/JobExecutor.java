@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * TODO
+ * 任务执行器
  *
  * @author zhh
  */
@@ -53,7 +53,15 @@ public class JobExecutor {
 
     public void destroy() {
         // 将自己从注册中心注销
-        // TODO
+        Map<String, Object> paramMap = new HashMap<>(4);
+        paramMap.put("appName", jobConfig.getAppName());
+        paramMap.put("address", jobConfig.getIp() + ":" + jobConfig.getPort());
+        restTemplate.postForObject("http://" + jobConfig.getAdminIp() + ":"
+                        + jobConfig.getAdminPort() + "/job/group/remove_address",
+                paramMap,
+                Object.class);
+        log.info("成功将应用地址从调度中心移除！");
+
     }
 
     public JobInvokeRsp jobInvoke(String name, String params) {

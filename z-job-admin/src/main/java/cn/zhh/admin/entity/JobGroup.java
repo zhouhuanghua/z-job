@@ -32,7 +32,7 @@ public class JobGroup implements Serializable {
     /**
      * 排序
      */
-    private Byte sort;
+    private Long sort;
 
     /**
      * 执行器地址类型：0=自动注册、1=手动录入

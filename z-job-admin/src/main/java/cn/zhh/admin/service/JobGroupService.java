@@ -1,8 +1,7 @@
 package cn.zhh.admin.service;
 
 import cn.zhh.admin.entity.JobGroup;
-
-import java.util.Optional;
+import cn.zhh.admin.rsp.Result;
 
 /**
  * TODO
@@ -12,11 +11,13 @@ import java.util.Optional;
  */
 public interface JobGroupService {
 
-    Optional<JobGroup> getById(Long id);
+    Result<JobGroup> getById(Long id);
 
-    JobGroup insert(JobGroup jobGroup);
+    Result<JobGroup> insert(JobGroup jobGroup);
 
-    JobGroup update(JobGroup jobGroup);
+    Result<JobGroup>  update(JobGroup jobGroup);
 
-    int deleteById(Long id);
+    Result<?> deleteById(Long id);
+
+    void removeAddressByAppName(String appName, String address);
 }

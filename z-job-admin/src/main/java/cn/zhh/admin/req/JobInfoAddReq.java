@@ -1,24 +1,9 @@
-package cn.zhh.admin.entity;
+package cn.zhh.admin.req;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Date;
-
-/**
- * z_job_info
- * @author zhh
- */
 @Data
-@Entity(name = "z_job_info")
-public class JobInfo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    private Long id;
+public class JobInfoAddReq {
 
     /**
      * 执行器主键ID
@@ -34,21 +19,6 @@ public class JobInfo implements Serializable {
      * 任务描述
      */
     private String jobDesc;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 创建人
-     */
-    private String creator;
 
     /**
      * 报警邮件
@@ -79,21 +49,6 @@ public class JobInfo implements Serializable {
      * 失败重试次数
      */
     private Integer executorFailRetryCount;
-
-    /**
-     * 上次调度时间
-     */
-    private Date triggerLastTime;
-
-    /**
-     * 下次调度时间
-     */
-    private Date triggerNextTime;
-
-    /**
-     * 是否已删除：1-是，0-否
-     */
-    private Byte isDeleted;
 
     /**
      * 启用状态：1-启用，0-停用

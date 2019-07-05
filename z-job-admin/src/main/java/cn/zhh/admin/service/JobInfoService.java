@@ -1,8 +1,7 @@
 package cn.zhh.admin.service;
 
 import cn.zhh.admin.entity.JobInfo;
-
-import java.util.Optional;
+import cn.zhh.admin.rsp.Result;
 
 /**
  * TODO
@@ -12,11 +11,17 @@ import java.util.Optional;
  */
 public interface JobInfoService {
 
-    Optional<JobInfo> getById(Long id);
+    Result<JobInfo> getById(Long id);
 
-    JobInfo insert(JobInfo jobInfo);
+    Result<JobInfo> insert(JobInfo jobInfo);
 
-    JobInfo update(JobInfo jobInfo);
+    Result<JobInfo> update(JobInfo jobInfo);
 
-    int deleteById(Long id);
+    Result deleteById(Long id);
+
+    Result register(JobInfo jobInfo);
+
+    Result run(Long id);
+
+    Result disable(Long id);
 }
