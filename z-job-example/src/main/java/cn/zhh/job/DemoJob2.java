@@ -5,7 +5,7 @@ import cn.zhh.core.handler.JobInvokeRsp;
 import org.springframework.stereotype.Component;
 
 /**
- * Demo Job
+ * Demo Job2
  *
  * @author z_hh
  */

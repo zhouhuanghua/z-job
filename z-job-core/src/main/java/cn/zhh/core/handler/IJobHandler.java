@@ -1,14 +1,12 @@
 package cn.zhh.core.handler;
 
 /**
- * TODO
+ * 任务处理器接口
  *
- * @author zhh
+ * @author z_hh
  */
-public abstract class IJobHandler {
+public interface IJobHandler {
 
-    public IJobHandler() {}
-
-    public abstract JobInvokeRsp execute(String params) throws Exception;
+    JobInvokeRsp execute(String params) throws Exception;
 
 }

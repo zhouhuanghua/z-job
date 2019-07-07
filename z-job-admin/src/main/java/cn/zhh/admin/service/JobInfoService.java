@@ -29,6 +29,8 @@ public interface JobInfoService {
 
     Result disable(Long id);
 
+    Result enable(Long id);
+
     Result<Page<JobInfoPageQueryRsp>> queryByPage(Integer pageNum, Integer pageSize);
 
     List<JobInfo> queryAll();

@@ -1,7 +1,6 @@
 package cn.zhh.core.handler;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -10,22 +9,27 @@ import java.util.Objects;
 /**
  * 任务调用返回结果
  *
- * @author zhh
+ * @author z_hh
  */
 @ToString
 public class JobInvokeRsp implements Serializable {
     public static final long serialVersionUID = 42L;
 
-    private static final int SUCCESS_CODE = 200;
+    public static final byte SUCCESS_CODE = 1;
 
-    private static final int ERROR_CODE = 500;
+    public static final byte ERROR_CODE = 0;
 
-    private int code;
+    @Getter
+    private Byte code;
 
     @Getter
     private String msg;
 
-    private JobInvokeRsp(int code, String msg) {
+    public JobInvokeRsp() {
+        this.code = SUCCESS_CODE;
+    }
+
+    public JobInvokeRsp(Byte code, String msg) {
         this.code = code;
         this.msg = msg;
     }

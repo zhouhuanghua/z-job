@@ -1,6 +1,6 @@
 package cn.zhh.core.executor;
 
-import cn.zhh.core.config.JobConfig;
+import cn.zhh.core.config.JobProperties;
 import cn.zhh.core.handler.IJobHandler;
 import cn.zhh.core.handler.JobInvokeRsp;
 import lombok.Setter;
@@ -18,15 +18,15 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 任务执行器
  *
- * @author zhh
+ * @author z_hh
  */
 @Slf4j
 public class JobExecutor {
 
     @Setter
-    private JobConfig jobConfig;
+    private JobProperties jobProperties;
 
-    @Setter
+    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
@@ -35,7 +35,7 @@ public class JobExecutor {
     private ConcurrentHashMap<String, IJobHandler> jobHandlerRepository = new ConcurrentHashMap();
 
     public IJobHandler registJobHandler(String name, IJobHandler jobHandler) {
-        log.info("成功注册JobHandler >>>>>>>>>> name={}，handler={}", name, jobHandler.getClass().getName());
+        log.info("【任务调度平台】成功注册JobHandler >>>>>>>>>> name={}，handler={}", name, jobHandler.getClass().getName());
         return (IJobHandler)jobHandlerRepository.put(name, jobHandler);
     }
 
@@ -44,6 +44,7 @@ public class JobExecutor {
     }
 
     public void init() {
+        log.info("【任务调度平台】JobExecutor init...");
         // 初始化所有JobHandler
         initJobHandler();
 
@@ -52,7 +53,7 @@ public class JobExecutor {
     }
 
     public void destroy() {
-        log.info("JobExecutor Destroy...");
+        log.info("【任务调度平台】JobExecutor destroy...");
 
     }
 
@@ -65,7 +66,7 @@ public class JobExecutor {
         try {
             return jobHandler.execute(params);
         } catch (Exception e) {
-            log.error("任务{}调用异常：{}", name, e);
+            log.error("【任务调度平台】任务{}调用异常：{}", name, e);
             return JobInvokeRsp.error("任务调用异常！");
         }
     }
@@ -88,19 +89,19 @@ public class JobExecutor {
 
         @Override
         public void run() {
-            log.info("开始往调度中心注册...");
+            log.info("【任务调度平台】开始往调度中心注册当前应用信息...");
             Map<String, Object> paramMap = new HashMap<>(4);
-            paramMap.put("appName", jobConfig.getAppName());
-            paramMap.put("appDesc", jobConfig.getAppDesc());
-            paramMap.put("address", jobConfig.getIp() + ":" + jobConfig.getPort());
+            paramMap.put("appName", jobProperties.getAppName());
+            paramMap.put("appDesc", jobProperties.getAppDesc());
+            paramMap.put("address", jobProperties.getIp() + ":" + jobProperties.getPort());
             try {
-                restTemplate.postForObject("http://" + jobConfig.getAdminIp() + ":"
-                                + jobConfig.getAdminPort() + "/job/app/auto_register",
+                restTemplate.postForObject("http://" + jobProperties.getAdminIp() + ":"
+                                + jobProperties.getAdminPort() + "/api/job/app/auto_register",
                         paramMap,
                         Object.class);
-                log.info("应用注册到调度中心成功！");
+                log.info("【任务调度平台】应用注册到调度中心成功！");
             } catch (Throwable t) {
-                log.info("应用注册到调度中心失败：{}", t.getMessage(), t);
+                log.warn("【任务调度平台】应用注册到调度中心失败：{}", t.getMessage(), t);
             }
         }
     }

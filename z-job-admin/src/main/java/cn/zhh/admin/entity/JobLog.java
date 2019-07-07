@@ -1,6 +1,13 @@
 package cn.zhh.admin.entity;
 
+import cn.zhh.admin.base.ActiveRecord;
+import cn.zhh.admin.dao.JobLogDao;
 import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,12 +18,15 @@ import java.util.Date;
  * @date 20190706
  */
 @Data
-public class JobLog implements Serializable {
+@Entity(name = "z_job_log")
+public class JobLog extends ActiveRecord<JobLog, Long, JobLogDao> implements Serializable {
   private static final long serialVersionUID = 1L;
   
   /**
    * id
    */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   
   /**

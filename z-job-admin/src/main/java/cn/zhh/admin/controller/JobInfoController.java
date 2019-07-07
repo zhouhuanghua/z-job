@@ -1,7 +1,7 @@
 package cn.zhh.admin.controller;
 
-import cn.zhh.admin.entity.JobGroup;
 import cn.zhh.admin.entity.JobInfo;
+import cn.zhh.admin.enums.CreateWayEnum;
 import cn.zhh.admin.enums.IsDeletedEnum;
 import cn.zhh.admin.req.JobInfoAddReq;
 import cn.zhh.admin.req.JobInfoModifyReq;
@@ -14,7 +14,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Date;
 
 @RestController
@@ -33,19 +32,20 @@ public class JobInfoController {
     }
 
     @PostMapping("/add")
-    public Result<JobInfo> add(@RequestBody JobInfoAddReq addReq) {
+    public Result<JobInfo> add(JobInfoAddReq addReq) {
         JobInfo jobInfo = new JobInfo();
         BeanUtils.copyProperties(addReq, jobInfo);
 
         jobInfo.setCreator("ZHH");
         jobInfo.setCreateTime(new Date());
+        jobInfo.setCreateWay(CreateWayEnum.MANUAL.getCode());
         jobInfo.setIsDeleted(IsDeletedEnum.NO.getCode());
 
         return jobInfoService.insert(jobInfo);
     }
 
     @PostMapping("/modify")
-    public Result<JobInfo>  modify(@RequestBody JobInfoModifyReq modifyReq) {
+    public Result<JobInfo>  modify(JobInfoModifyReq modifyReq) {
         JobInfo jobInfo = new JobInfo();
         BeanUtils.copyProperties(modifyReq, jobInfo);
 
@@ -54,9 +54,23 @@ public class JobInfoController {
         return jobInfoService.update(jobInfo);
     }
 
-    @DeleteMapping("/delete/{id:[\\d]}")
-    public Result<?> delete(@PathParam("id") Long id) {
+    @GetMapping("/delete/{id:[\\d]+}")
+    public Result<?> delete(@PathVariable("id") Long id) {
         return jobInfoService.deleteById(id);
     }
 
+    @GetMapping("/enable/{id:[\\d]+}")
+    public Result<?> enable(@PathVariable("id") Long id) {
+        return jobInfoService.enable(id);
+    }
+
+    @GetMapping("/disable/{id:[\\d]+}")
+    public Result<?> disable(@PathVariable("id") Long id) {
+        return jobInfoService.disable(id);
+    }
+
+    @GetMapping("/run/{id:[\\d]+}")
+    public Result<?> run(@PathVariable("id") Long id) {
+        return jobInfoService.run(id);
+    }
 }

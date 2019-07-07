@@ -1,19 +1,20 @@
 package cn.zhh.core.annotation;
 
-import cn.zhh.core.config.EnableJobAutoConfigurationRegistrar;
+import cn.zhh.core.config.JobAutoConfigurationRegistrar;
+import cn.zhh.core.config.JobConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
 /**
- * TODO
+ * 开启任务自动配置
  *
- * @author zhh
+ * @author z_hh
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({EnableJobAutoConfigurationRegistrar.class})
+@Import({JobAutoConfigurationRegistrar.class, JobConfiguration.class})
 public @interface EnableJobAutoConfiguration {
 
     String adminIp();

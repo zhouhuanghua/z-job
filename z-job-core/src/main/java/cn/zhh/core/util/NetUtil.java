@@ -11,9 +11,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * TODO
+ * 网络工具类
  *
- * @author zhh
+ * @author z_hh
  */
 @Slf4j
 public class NetUtil {

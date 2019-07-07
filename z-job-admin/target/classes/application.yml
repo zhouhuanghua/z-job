@@ -9,3 +9,5 @@ spring:
         show-sql: true
         hibernate:
           ddl-auto: update
+    hikari:
+      connection-test-query: SELECT 1

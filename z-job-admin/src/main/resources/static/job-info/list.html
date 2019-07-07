@@ -6,40 +6,48 @@
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
     <script src="/lib/vue/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/lib/common/my.js"></script>
 </head>
 <body>
 <div class="container">
 
+    <h3><a href="/">首页</a></h3>
     <div align="right">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-placement="bottom" data-target="#myModal">添加任务</button>
+        <button type="button" class="btn btn-info" @click="add()">添加任务</button>
     </div>
 
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>序号</th>
-            <th>任务编号</th>
-            <th>所属分组</th>
-            <th>任务执行CRON</th>
-            <th>创建时间</th>
-            <th>下次调度时间</th>
-            <th>状态</th>
-            <th>操作</th>
+            <th width="5%">序号</th>
+            <th width="10%">所属应用</th>
+            <th width="10%">任务名称</th>
+            <th width="15%">任务描述</th>
+            <th width="15%">执行CRON</th>
+            <!--<th width="10%">创建时间</th>-->
+            <th width="15%">下次调度时间</th>
+            <th width="10%">启用状态</th>
+            <th width="20%">操作</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(item, index) of page.records" :key="index">
             <td>{{index + 1}}</td>
-            <td>{{item.executorHandler}}</td>
-            <td>{{item.appName}}</td>>
-            <td>{{item.jobCron}}</td>
-            <td>{{item.createTime}}</td>
-            <td>{{item.trigger_next_time}}</td>
-            <td v-text="enableConvert(item.enable, '未知')"></td>
+            <td>{{item.jobAppName}}</td>
+            <td>{{item.jobName}}</td>
+            <td>{{item.jobDesc}}</td>
+            <td>{{item.runCron}}</td>
+            <!--<td>{{item.createTime}}</td>-->
+            <td>{{item.triggerNextTime}}</td>
+            <td v-text="enabledConvert(item.enabled, '未知')"></td>
             <td>
-                <button type="button" class="btn btn-warning" v-if="item.enable == 1" @click="disable()">停用</button>
-                <button type="button" class="btn btn-success" v-if="item.enable == 0" @click="enable()">启用</button>
-                <button type="button" class="btn btn-secondary" @click="edit()">编辑</button>
+                <button type="button" class="btn btn-warning" v-if="item.enabled == 1" @click="disable(item.id)">停用</button>
+                <button type="button" class="btn btn-success" v-if="item.enabled == 0" @click="enable(item.id)">启用</button>
+                <button type="button" class="btn btn-secondary" @click="run(item.id)">调用</button>
+                <button type="button" class="btn" v-if="item.enabled == 0" @click="edit(item.id)">编辑</button>
+                <button type="button" class="btn btn-danger" v-if="item.enabled == 0" @click="del(item.id)">删除</button>
+                <button type="button" class="btn btn-info" @click="log(item.id)">查看调度日志</button>
             </td>
         </tr>
         </tbody>
@@ -59,33 +67,6 @@
     </ul>
 
 </div>
-
-<!-- 模态框 -->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">请选择切入类</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                没有AOP代理类...
-            </div>
-
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="confirmActiveBtn">确认激活</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <script>
     new Vue({
         el: ".container",
@@ -105,7 +86,7 @@
             query: function (pageNum) {
                 var _this = this;
                 if (pageNum < 1 || (pageNum > this.page.pages && this.page.pages != 0)) return;
-                axios.get('/job/info/page_query', {
+                axios.get('/job/info/page_query?time=' + Date.now(), {
                     params: {
                         pageNum: pageNum,
                         pageSize: _this.page.size
@@ -123,10 +104,65 @@
                         console.log(error);
                     });
             },
-            add: function () {
-//                window.location.href="./add.html";
+            run: function (id) {
+                var _this = this;
+                axios.get('/job/info/run/' + id)
+                    .then(function (response) {
+                        MyAlert(response.data.msg);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             },
-            enableConvert: function (key, defaultVal) {
+            disable: function (id) {
+                var _this = this;
+                axios.get('/job/info/disable/' + id)
+                    .then(function (response) {
+                        var data = response.data;
+                        if (data.code == 200) {
+                            MyAlert(data.msg, reload);
+                        } else {
+                            MyAlert(data.msg);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            enable: function (id) {
+                var _this = this;
+                axios.get('/job/info/enable/' + id)
+                    .then(function (response) {
+                        var data = response.data;
+                        if (data.code == 200) {
+                            MyAlert(data.msg, reload);
+                        } else {
+                            MyAlert(data.msg);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            del: function (id) {
+                var _this = this;
+                axios.get('/job/info/delete/' + id)
+                    .then(function (response) {
+                        var data = response.data;
+                        if (data.code == 200) {
+                            MyAlert(data.msg, reload);
+                        } else {
+                            MyAlert(data.msg);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            add: function () {
+                window.location.href="./add.html";
+            },
+            enabledConvert: function (key, defaultVal) {
                 switch (key) {
                     case 0:
                         return "停用";
@@ -135,10 +171,13 @@
                     default:
                         return defaultVal;
                 }
-            },
+            }
         }
     });
 
+    function reload() {
+        window.location.reload();
+    }
 </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 package cn.zhh.admin.service;
 
 import cn.zhh.admin.entity.JobLog;
+import cn.zhh.admin.rsp.Result;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * TODO
@@ -12,11 +13,9 @@ import java.util.Optional;
  */
 public interface JobLogService {
 
-    Optional<JobLog> getById(Long id);
+    Result<JobLog> getById(Long id);
 
-    JobLog insert(JobLog jobLog);
+    Result<JobLog> insert(JobLog jobLog);
 
-    JobLog update(JobLog jobLog);
-
-    int deleteById(Long id);
+    Result<List<JobLog>> queryByJobId(Long jobId);
 }

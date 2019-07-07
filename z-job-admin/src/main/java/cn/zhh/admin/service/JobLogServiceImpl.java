@@ -2,9 +2,13 @@ package cn.zhh.admin.service;
 
 import cn.zhh.admin.dao.JobLogDao;
 import cn.zhh.admin.entity.JobLog;
+import cn.zhh.admin.rsp.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,31 +24,29 @@ public class JobLogServiceImpl implements JobLogService {
     @Autowired
     private JobLogDao dao;
 
+    @Autowired
+    private JobInfoService jobInfoService;
+
     @Override
-    public Optional<JobLog> getById(Long id) {
-        return dao.findById(id);
+    public Result<JobLog> getById(Long id) {
+        Optional<JobLog> jobLogOptional = dao.findById(id);
+        return jobLogOptional.isPresent() ? Result.ok(jobLogOptional.get()) : Result.err("数据不存在！");
     }
 
     @Override
-    public JobLog insert(JobLog jobLog) {
+    public Result<JobLog> insert(JobLog jobLog) {
         if (Objects.nonNull(jobLog.getId())) {
             jobLog.setId(null);
         }
-        return dao.save(jobLog);
+        return Result.ok(dao.save(jobLog));
     }
 
     @Override
-    public JobLog update(JobLog jobLog) {
-        return dao.save(jobLog);
-    }
+    public Result<List<JobLog>> queryByJobId(Long jobId) {
+        JobLog jobLog = new JobLog();
+        jobLog.setJobId(jobId);
+        List<JobLog> jobLogList = dao.findAll(Example.of(jobLog), Sort.by(Sort.Order.desc("triggerStartTime")));
 
-    @Override
-    public int deleteById(Long id) {
-        Optional<JobLog> jobLogOptional = dao.findById(id);
-        if (jobLogOptional.isPresent()) {
-            dao.delete(jobLogOptional.get());
-            return 1;
-        }
-        return 0;
+        return Result.ok(jobLogList);
     }
 }

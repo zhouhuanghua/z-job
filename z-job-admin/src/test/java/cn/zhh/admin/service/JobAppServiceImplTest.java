@@ -1,5 +1,6 @@
 package cn.zhh.admin.service;
 
+import cn.zhh.admin.entity.JobApp;
 import cn.zhh.admin.enums.CreateWayEnum;
 import cn.zhh.admin.rsp.Result;
 import org.junit.Assert;
@@ -25,9 +26,8 @@ public class JobAppServiceImplTest {
     public void insert() throws Exception {
         JobApp JobApp = new JobApp();
         JobApp.setAppName("z-job-demo");
-        JobApp.setTitle("demo");
-        JobApp.setAddressType(CreateWayEnum.MANUAL.getCode());
-        JobApp.setSort(1L);
+        JobApp.setAppDesc("demo");
+        JobApp.setCreateWay(CreateWayEnum.MANUAL.getCode());
         Result<JobApp> result = JobAppService.insert(JobApp);
         Assert.assertNotNull(result.isOk());
     }

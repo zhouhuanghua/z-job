@@ -1,44 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>添加任务组</title>
+    <title>添加任务</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <script src="/lib/vue/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/lib/jquery/jquery.form.js"></script>
+    <script src="/lib/common/my.js"></script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="/job/group/manual_add" method="post">
-    <div class="form-group">
-        <label for="appName" class="col-sm-2 control-label">任务组名称</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="appName" id="appName" placeholder="请输入任务组名称">
+<form class="form-horizontal" role="form" action="/job/info/add" method="post">
+    <div class="form-group" id="jobApp">
+        <label for="jobAppId" class="col-sm-2 control-label">所属应用：</label>
+        <div  class="col-sm-10">
+            <select class="form-control" name="jobAppId" id="jobAppId">
+                <option v-for="(item, index) in apps"  :value="item.appId">{{item.appName}}</option>
+            </select>
         </div>
     </div>
     <div class="form-group">
-        <label for="title" class="col-sm-2 control-label">任务组描述</label>
+        <label for="jobName" class="col-sm-2 control-label">任务名称：</label>
+        <span style="color: red">注入Spring容器中的bean名称</span>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="title" id="title" placeholder="请输入任务组描述">
+            <input type="text" class="form-control" name="jobName" id="jobName" placeholder="任务名称">
         </div>
     </div>
     <div class="form-group">
-        <label for="sort" class="col-sm-2 control-label">排序</label>
-        <span style="color: red">请输入正整数</span>
+        <label for="jobDesc" class="col-sm-2 control-label">任务描述：</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="sort" id="sort" placeholder="请输入排序号">
+            <input type="text" class="form-control" name="jobDesc" id="jobDesc" placeholder="请输入任务描述">
         </div>
     </div>
     <div class="form-group">
-        <label for="addressList" class="col-sm-2 control-label">应用机器地址</label>
-        <span style="color: red">格式：127.0.0.1:8080，多个用英文逗号分隔</span>
+        <label for="alarmEmail" class="col-sm-2 control-label">报警邮件：</label>
+        <span style="color: red">格式：xxx@oo.com，多个逗号分隔</span>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="addressList" id="addressList" placeholder="请输入应用机器地址">
+            <input type="text" class="form-control" name="alarmEmail" id="alarmEmail" placeholder="报警邮件">
         </div>
     </div>
-    <div align="center">
-        <button type="button" class="btn btn-secondary" style="margin-right: 5%" onclick="history.go(-1);">
-            返回
-        </button>
-        <button type="submit" class="btn btn-primary">提交</button>
+    <div class="form-group">
+        <label for="runCron" class="col-sm-2 control-label">任务执行CRON：</label>
+        <span style="color: red">cron表达式，<a href="http://cron.qqe2.com/" target="_blank">参考网站</a></span>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="runCron" id="runCron" placeholder="请输入任务执行CRON">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="runStrategy" class="col-sm-2 control-label">任务执行策略：</label>
+        <div  class="col-sm-10">
+            <select class="form-control" name="runStrategy" id="runStrategy">
+                <option value="1">随机</option>
+                <option value="2">轮询</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="runParam" class="col-sm-2 control-label">任务执行参数：</label>
+        <span style="color: red">目前只支持字符串</span>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="runParam" id="runParam" placeholder="任务执行参数">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="runTimeout" class="col-sm-2 control-label">任务执行超时时间，单位秒：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="runTimeout" id="runTimeout" placeholder="请输入任务执行超时时间">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="runFailRetryCount" class="col-sm-2 control-label">任务执行失败重试次数：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="runFailRetryCount" id="runFailRetryCount" placeholder="请输入任务执行失败重试次数">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="enabled" class="col-sm-2 control-label">任务执行策略：</label>
+        <div  class="col-sm-10">
+            <select class="form-control" name="enabled" id="enabled">
+                <option value="1">启用</option>
+                <option value="0">停用</option>
+            </select>
+        </div>
     </div>
 </form>
+
+<div align="center">
+    <button type="button" class="btn btn-secondary" style="margin-right: 5%">
+        返回
+    </button>
+    <button type="submit" class="btn btn-primary">提交</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#jobApp",
+        mounted: function () {
+            this.queryAppName();
+        },
+        data: {
+            apps: []
+        },
+        methods: {
+            queryAppName: function () {
+                var _this = this;
+                axios.get('/job/app/query_allname')
+                    .then(function (response) {
+                        var data = response.data;
+                        if (data.code == 200) {
+                            _this.apps = data.content;
+                        } else {
+                            MyAlert(data.msg);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+        }
+    });
+
+    $(".btn-secondary").on("click", function(){
+        back();
+    })
+
+    $(".btn-primary").on("click", function(){
+        $(".alert").hide();
+        $(".form-horizontal").ajaxSubmit({
+            success : function(result){
+                if (result.code == 200) {
+                    MyAlert(result.msg, back());
+                } else {
+                    MyAlert(result.msg);
+                }
+            },
+            error : function(){
+                MyAlert("系统异常，请稍后再试！");
+            }
+        });
+    })
+
+    function back() {
+        history.go(-1);
+    }
+
+</script>
 </body>
 </html>

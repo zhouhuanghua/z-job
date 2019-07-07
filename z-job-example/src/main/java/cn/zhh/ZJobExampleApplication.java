@@ -3,8 +3,6 @@ package cn.zhh;
 import cn.zhh.core.annotation.EnableJobAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableJobAutoConfiguration(adminIp = "127.0.0.1",
@@ -16,10 +14,4 @@ public class ZJobExampleApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZJobExampleApplication.class, args);
 	}
-
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
 }

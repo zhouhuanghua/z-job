@@ -4,8 +4,8 @@ import lombok.Getter;
 
 public enum CreateWayEnum {
 
-    AUTO((byte)0, "自动注册"),
-    MANUAL((byte)1, "手动录入");
+    AUTO((byte)0, "自动"),
+    MANUAL((byte)1, "手工");
 
     @Getter
     private Byte code;
@@ -29,9 +29,9 @@ public enum CreateWayEnum {
     }
 
     public static String code2desc(Byte code) {
-        for (CreateWayEnum addressTypeEnum : CreateWayEnum.values()) {
-            if (code.equals(addressTypeEnum.code)) {
-                return addressTypeEnum.getDescription();
+        for (CreateWayEnum createWayEnum : CreateWayEnum.values()) {
+            if (code.equals(createWayEnum.code)) {
+                return createWayEnum.getDescription();
             }
         }
         throw new RuntimeException("未知枚举类型");

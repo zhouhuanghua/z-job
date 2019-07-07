@@ -29,9 +29,9 @@ public enum EnabledEnum {
     }
 
     public static String code2desc(Byte code) {
-        for (EnabledEnum addressTypeEnum : EnabledEnum.values()) {
-            if (code.equals(addressTypeEnum.code)) {
-                return addressTypeEnum.getDescription();
+        for (EnabledEnum enabledEnum : EnabledEnum.values()) {
+            if (code.equals(enabledEnum.code)) {
+                return enabledEnum.getDescription();
             }
         }
         throw new RuntimeException("未知枚举类型");

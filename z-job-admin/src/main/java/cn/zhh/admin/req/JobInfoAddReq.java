@@ -6,14 +6,14 @@ import lombok.Data;
 public class JobInfoAddReq {
 
     /**
-     * 执行器主键ID
+     * 任务所属应用id
      */
-    private Long jobGroup;
+    private Long jobAppId;
 
     /**
-     * 任务执行CRON
+     * 任务名称
      */
-    private String jobCron;
+    private String jobName;
 
     /**
      * 任务描述
@@ -21,37 +21,37 @@ public class JobInfoAddReq {
     private String jobDesc;
 
     /**
-     * 报警邮件
+     * 报警邮件，多个逗号分隔
      */
     private String alarmEmail;
 
     /**
-     * 执行器路由策略：1-随机，2-轮询
+     * 任务执行CRON
      */
-    private String executorRouteStrategy;
+    private String runCron;
 
     /**
-     * 执行器任务handler
+     * 任务执行策略：1-随机，2-轮询
      */
-    private String executorHandler;
+    private Byte runStrategy;
 
     /**
-     * 执行器任务参数
+     * 任务执行参数
      */
-    private String executorParam;
+    private String runParam;
 
     /**
      * 任务执行超时时间，单位秒
      */
-    private Integer executorTimeout;
+    private Integer runTimeout;
 
     /**
-     * 失败重试次数
+     * 任务执行失败重试次数
      */
-    private Integer executorFailRetryCount;
+    private Integer runFailRetryCount;
 
     /**
      * 启用状态：1-启用，0-停用
      */
-    private Byte enable;
+    private Byte enabled;
 }

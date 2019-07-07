@@ -1,6 +1,6 @@
 package cn.zhh.admin.config;
 
-import cn.zhh.admin.enums.EnableEnum;
+import cn.zhh.admin.enums.EnabledEnum;
 import cn.zhh.admin.enums.IsDeletedEnum;
 import cn.zhh.admin.rsp.Result;
 import cn.zhh.admin.service.JobInfoService;
@@ -28,14 +28,14 @@ public class RegisterJobOnAppStart implements ApplicationListener<ApplicationRea
         jobInfoService.queryAll().stream()
             .filter(jobInfo ->
                 Objects.equals(jobInfo.getIsDeleted(), IsDeletedEnum.NO.getCode())
-                    && Objects.equals(jobInfo.getEnable(), EnableEnum.YES.getCode())
+                    && Objects.equals(jobInfo.getEnabled(), EnabledEnum.YES.getCode())
             )
             .forEach(jobInfo -> {
                 Result registerResult = jobInfoService.register(jobInfo);
                 if (registerResult.isErr()) {
-                    log.error("任务[id={}，handler={}]注册失败：{}", jobInfo.getId(), jobInfo.getExecutorHandler(), registerResult.getMsg());
+                    log.error("任务[id={}，jobName={}]注册失败：{}", jobInfo.getId(), jobInfo.getJobName(), registerResult.getMsg());
                 }
-                log.info("任务[id={}，handler={}]注册成功！", jobInfo.getId(), jobInfo.getExecutorHandler());
+                log.info("任务[id={}，jobName={}]注册成功！", jobInfo.getId(), jobInfo.getJobName());
             });
     }
 }

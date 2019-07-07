@@ -2,9 +2,10 @@ package cn.zhh.admin.job;
 
 
 import cn.zhh.core.handler.JobInvokeRsp;
-import cn.zhh.core.starter.JobInvokeReq;
+import cn.zhh.core.handler.JobInvokeReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.SerializationUtils;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -13,13 +14,16 @@ public class JobInvoker {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String PATH = "/job/invoke";
+    private static final String PREFIX = "http://";
 
-    public JobInvokeRsp invoke(String url, String jobHandler, String params){
+    private static final String PATH = "/api/job/invoke";
+
+    public JobInvokeRsp invoke(String url, String jobHandler, String params) {
         JobInvokeReq req = new JobInvokeReq();
         req.setName(jobHandler);
         req.setParams(params);
 
-        return restTemplate.postForObject(url + PATH, req, JobInvokeRsp.class);
+        byte[] dataBytes = SerializationUtils.serialize(req);
+        return restTemplate.postForObject(PREFIX + url + PATH, dataBytes, JobInvokeRsp.class);
     }
 }
