@@ -1,4 +1,4 @@
-package cn.zhh.core.starter;
+package cn.zhh.core.executor;
 
 import cn.zhh.core.config.JobConfig;
 import cn.zhh.core.handler.IJobHandler;
@@ -52,15 +52,7 @@ public class JobExecutor {
     }
 
     public void destroy() {
-        // 将自己从注册中心注销
-        Map<String, Object> paramMap = new HashMap<>(4);
-        paramMap.put("appName", jobConfig.getAppName());
-        paramMap.put("address", jobConfig.getIp() + ":" + jobConfig.getPort());
-        restTemplate.postForObject("http://" + jobConfig.getAdminIp() + ":"
-                        + jobConfig.getAdminPort() + "/job/group/remove_address",
-                paramMap,
-                Object.class);
-        log.info("成功将应用地址从调度中心移除！");
+        log.info("JobExecutor Destroy...");
 
     }
 
@@ -103,7 +95,7 @@ public class JobExecutor {
             paramMap.put("address", jobConfig.getIp() + ":" + jobConfig.getPort());
             try {
                 restTemplate.postForObject("http://" + jobConfig.getAdminIp() + ":"
-                                + jobConfig.getAdminPort() + "/job/group/auto_register",
+                                + jobConfig.getAdminPort() + "/job/app/auto_register",
                         paramMap,
                         Object.class);
                 log.info("应用注册到调度中心成功！");

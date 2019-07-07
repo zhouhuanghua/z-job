@@ -2,10 +2,10 @@ package cn.zhh.admin.enums;
 
 import lombok.Getter;
 
-public enum JobGroupAddressTypeEnum {
+public enum EnabledEnum {
 
-    AUTO((byte)0, "自动注册"),
-    MANUAL((byte)1, "手动录入");
+    YES((byte)1, "启用"),
+    NO((byte)0, "停用");
 
     @Getter
     private Byte code;
@@ -13,14 +13,14 @@ public enum JobGroupAddressTypeEnum {
     @Getter
     private String description;
 
-    private JobGroupAddressTypeEnum(Byte code, String description) {
+    private EnabledEnum(Byte code, String description) {
         this.code = code;
         this.description = description;
     }
 
     public static String getDescription(Byte code) {
-        JobGroupAddressTypeEnum[] values = JobGroupAddressTypeEnum.values();
-        for (JobGroupAddressTypeEnum value : values) {
+        EnabledEnum[] values = EnabledEnum.values();
+        for (EnabledEnum value : values) {
             if (value.getCode().equals(code)) {
                 return value.getDescription();
             }
@@ -29,7 +29,7 @@ public enum JobGroupAddressTypeEnum {
     }
 
     public static String code2desc(Byte code) {
-        for (JobGroupAddressTypeEnum addressTypeEnum : JobGroupAddressTypeEnum.values()) {
+        for (EnabledEnum addressTypeEnum : EnabledEnum.values()) {
             if (code.equals(addressTypeEnum.code)) {
                 return addressTypeEnum.getDescription();
             }

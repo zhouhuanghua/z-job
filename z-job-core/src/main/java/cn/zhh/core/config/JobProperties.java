@@ -3,12 +3,12 @@ package cn.zhh.core.config;
 import lombok.Data;
 
 /**
- * TODO
+ * 任务配置属性类
  *
- * @author zhh
+ * @author z_hh
  */
 @Data
-public class JobConfig {
+public class JobProperties {
 
     private String adminIp;
 

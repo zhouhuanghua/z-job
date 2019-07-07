@@ -3,7 +3,7 @@ package cn.zhh.admin.req;
 import lombok.Data;
 
 @Data
-public class JobGroupModifyReq extends JobGroupAddReq {
+public class JobAppModifyReq extends JobAppAddReq {
 
     private Long id;
 }

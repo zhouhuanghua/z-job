@@ -1,4 +1,4 @@
-package cn.zhh.core.starter;
+package cn.zhh.core.handler;
 
 import lombok.Data;
 

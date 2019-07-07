@@ -1,7 +1,6 @@
 package cn.zhh.admin.service;
 
-import cn.zhh.admin.entity.JobGroup;
-import cn.zhh.admin.enums.JobGroupAddressTypeEnum;
+import cn.zhh.admin.enums.CreateWayEnum;
 import cn.zhh.admin.rsp.Result;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,24 +11,24 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class JobGroupServiceImplTest {
+public class JobAppServiceImplTest {
 
     @Autowired
-    private JobGroupService jobGroupService;
+    private JobAppService JobAppService;
 
     @Test
     public void getById() throws Exception {
-        Assert.assertTrue(jobGroupService.getById(1L).isOk());
+        Assert.assertTrue(JobAppService.getById(1L).isOk());
     }
 
     @Test
     public void insert() throws Exception {
-        JobGroup jobGroup = new JobGroup();
-        jobGroup.setAppName("z-job-demo");
-        jobGroup.setTitle("demo");
-        jobGroup.setAddressType(JobGroupAddressTypeEnum.MANUAL.getCode());
-        jobGroup.setSort(1L);
-        Result<JobGroup> result = jobGroupService.insert(jobGroup);
+        JobApp JobApp = new JobApp();
+        JobApp.setAppName("z-job-demo");
+        JobApp.setTitle("demo");
+        JobApp.setAddressType(CreateWayEnum.MANUAL.getCode());
+        JobApp.setSort(1L);
+        Result<JobApp> result = JobAppService.insert(JobApp);
         Assert.assertNotNull(result.isOk());
     }
 

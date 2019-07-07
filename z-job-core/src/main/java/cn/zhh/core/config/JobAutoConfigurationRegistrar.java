@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
 
@@ -23,8 +22,7 @@ import java.util.Objects;
  * @author zhh
  */
 @Slf4j
-public class EnableJobAutoConfigurationRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
-
+public class JobAutoConfigurationRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
     @Setter
     private Environment environment;
 
@@ -37,25 +35,8 @@ public class EnableJobAutoConfigurationRegistrar implements ImportBeanDefinition
             return;
         }
 
-        // 如果restTemplate不存在，注册一个
-        registerRestTemplateOnMissing(beanDefinitionRegistry);
-
         // 注册JobExecutor
         registerJobExecutor(annotationAttributes, beanDefinitionRegistry);
-
-        // 注册Servlet
-        registerJobInvokeServletRegistrationBean(beanDefinitionRegistry);
-
-    }
-
-    private void registerRestTemplateOnMissing(BeanDefinitionRegistry beanDefinitionRegistry) {
-        boolean containsRestTemplate = beanDefinitionRegistry.containsBeanDefinition("restTemplate");
-        if (!containsRestTemplate) {
-            AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(RestTemplate.class)
-                    .setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_NAME)
-                    .getBeanDefinition();
-            beanDefinitionRegistry.registerBeanDefinition("restTemplate", beanDefinition);
-        }
     }
 
     private void registerJobExecutor(AnnotationAttributes annotationAttributes, BeanDefinitionRegistry beanDefinitionRegistry) {
@@ -72,21 +53,9 @@ public class EnableJobAutoConfigurationRegistrar implements ImportBeanDefinition
                 .setInitMethodName("init")
                 .setDestroyMethodName("destroy")
                 .addPropertyValue("jobConfig", jobConfig)
-                .addPropertyReference("restTemplate", "restTemplate")
                 .setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE)
                 .getBeanDefinition();
 
         beanDefinitionRegistry.registerBeanDefinition("jobExecutor", beanDefinition);
     }
-
-    private void registerJobInvokeServletRegistrationBean(BeanDefinitionRegistry beanDefinitionRegistry) {
-        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(JobInvokeServletRegistrationBean.class)
-                .setFactoryMethod("newInstance")
-                .addPropertyReference("jobExecutor", "jobExecutor")
-                .setAutowireMode(AbstractBeanDefinition.AUTOWIRE_NO)
-                .getBeanDefinition();
-
-        beanDefinitionRegistry.registerBeanDefinition("jobInvokeServlet", beanDefinition);
-    }
-
 }
