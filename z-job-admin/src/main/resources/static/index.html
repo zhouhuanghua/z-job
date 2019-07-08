@@ -1,30 +1,73 @@
-<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <title>Bootstrap 实例</title>
+    <title>任务调度平台</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" href="/lib/left_navigation/css/main.css">
+    <link rel="stylesheet" href="/lib/left_navigation/css/style.css">
 </head>
+
 <body>
+    <div id="loading">
+        <div></div>
+        <div></div>
+        <span></span>
+    </div>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="brand"> <a href="/index.html"><img src="/lib/left_navigation/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a> </div>
+            <div class="container-fluid">
+                <div class="navbar-btn" style="padding: 0; padding-top: 10px;">
+                    <button type="button" class="btn-toggle-fullwidth btn-toggle-mx"><img src="/lib/left_navigation/img/left.png" height="40px" alt=""></button>
+                </div>
+            </div>
+        </nav>
+        <!-- END NAVBAR -->
+        <!--_________________________________________________________________________________________-->
+        <!-- LEFT SIDEBAR -->
+        <div id="sidebar-nav" class="sidebar">
+            <div class="sidebar-scroll">
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="javascript:;" class="nav-togg"> <span>应用管理</span> </a>
+                            <div>
+                                <ul>
+                                    <li><a href="/job-app/list.html" target="_blank" class="iframe_link"><span>应用列表</span></a></li>
+                                    <li><a href="/job-app/add.html" target="_blank" class="iframe_link"><span>添加应用</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="nav-togg"> <span>任务管理</span> </a>
+                            <div>
+                                <ul>
+                                    <li><a href="/job-info/list.html" target="_blank" class="iframe_link"><span>任务列表</span></a></li>
+                                    <li><a href="/job-info/add.html" target="_blank" class="iframe_link"><span>添加任务</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-content" style="height: 100%;">
+                <iframe src="/main.html" class="iframe_mx uicss-cn"></iframe>
+            </div>
+        </div>
+    </div>
 
-<nav class="navbar navbar-expand-sm bg-light">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/job-app/list.html">应用管理</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/job-info/list.html">任务管理</a>
-        </li>
-    </ul>
-</nav>
-<br>
-
-<div class="container-fluid">
-    <h3>进击的周先生</h3>
-    <p>我的GitHub地址：<a href="https://github.com/zhouhuanghua">https://github.com/zhouhuanghua</a></p>
-    <p>我的博客：<a href="https://blog.csdn.net/qq_31142553">https://blog.csdn.net/qq_31142553</a></p>
-</div>
+    <script src="/lib/left_navigation/js/jquery.min.js"></script>
+    <script src="/lib/left_navigation/js/bootstrap.min.js"></script>
+    <script src="/lib/left_navigation/js/jquery.slimscroll.min.js"></script>
+    <script src="/lib/left_navigation/js/klorofil-common.js"></script>
 
 </body>
 </html>

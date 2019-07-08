@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>梦想标志Swiper汇总</title>
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/heightlength.css">
+<link rel="stylesheet" href="../css/mxjs.css">
+</head>
+
+<body class="mScroll">
+<div class="container">
+  <div class="jsbg">
+    <div class="col-lg-12 mxlength">
+      <div class="mx-1">
+        <h2>层次选择器和属性选择器</h2>
+        <p>$(".box&nbsp;p") 等于 $(".box").find("p")&nbsp;&nbsp;&nbsp;&nbsp;//相当于没有大于号的下一级p</p>
+        <p>$(".box &gt; p") 相当于 $(".box").children("p")&nbsp;&nbsp;&nbsp;&nbsp;//相当于绝对下一级不可改变</p>
+		<p>$(".box + p") 相当于 $(".box").next("p")&nbsp;&nbsp;&nbsp;&nbsp;//相当同级屁股后的“第一个”</p>
+		<p>$(".box").nextAll("p")&nbsp;&nbsp;&nbsp;&nbsp;//.box的同级后所有的P, 中间拦截也没用！</p>
+		<p>$(".box").nextUntil("p")&nbsp;&nbsp;&nbsp;&nbsp;//当前box的屁股第一个无限往后，到P停止</p>
+		<p>$(".box").prev("p")&nbsp;&nbsp;&nbsp;&nbsp;//.box的同级前“一个”P, 拦截就完蛋，只有前一个有用，前一个没有P就无效</p>
+		  
+		  <p>12312312</p>
+		  <span>hahaha</span>
+		  <div>123</div>
+		  <span>1231</span>
+		  <span>312</span>
+		  <p>456</p>
+		  <p>789</p>
+		  <p>890</p>
+      </div>
+    </div>
+    <div class="col-lg-12  ">
+      <pre class="mScroll">
+        <code class="lang-javascript">
+	$(".box&nbsp;p")
+	$(".box").find("p")
+
+	$(".box &gt; p")
+	$(".box").children("p")
+	
+	$(".box + p")
+	$(".box").next("p")
+</code>
+    </pre>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> 
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script> 
+<script src="../js/smoothscroll.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script> 
+<script src="../js/mking.js"></script>
+</body>
+</html>

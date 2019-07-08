@@ -91,7 +91,7 @@ public class QuartzJob implements Job {
         jobLog.setJobRunResult(jobInvokeRsp.getCode());
         jobLog.setJobRunMsg(jobInvokeRsp.getMsg());
 
-        jobLog.setRunFailRetryCount(readyRetryCount);
+        jobLog.setRunFailRetryCount(Objects.equals(readyRetryCount, -1) ? 0 : readyRetryCount);
         jobLog.setRunAddressList(hasInvokeAddress.stream().reduce((s1, s2) -> s1 + "," + s2).orElse(""));
     }
 }

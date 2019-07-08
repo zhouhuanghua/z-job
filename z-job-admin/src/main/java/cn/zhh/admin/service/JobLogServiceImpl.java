@@ -5,12 +5,14 @@ import cn.zhh.admin.entity.JobLog;
 import cn.zhh.admin.rsp.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * TODO
@@ -42,11 +44,30 @@ public class JobLogServiceImpl implements JobLogService {
     }
 
     @Override
-    public Result<List<JobLog>> queryByJobId(Long jobId) {
-        JobLog jobLog = new JobLog();
-        jobLog.setJobId(jobId);
-        List<JobLog> jobLogList = dao.findAll(Example.of(jobLog), Sort.by(Sort.Order.desc("triggerStartTime")));
+    public Result<List<Map>> queryByJobId(Long jobId) {
+        JobLog jobLogExample = new JobLog();
+        jobLogExample.setJobId(jobId);
+        // 只查10条
+        Page<JobLog> jobLogPage = dao.findAll(Example.of(jobLogExample),
+                PageRequest.of(0, 10, Sort.by(Sort.Order.desc("triggerStartTime"))));
+        List<Map> logMapList = Collections.emptyList();
+        if (jobLogPage.hasContent()) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            logMapList = jobLogPage.getContent().stream()
+                    .map((JobLog log) -> {
+                        Map logMap = new HashMap(6);
+                        logMap.put("triggerStartTime", dateFormat.format(log.getTriggerStartTime()));
+                        logMap.put("triggerEndTime", dateFormat.format(log.getTriggerEndTime()));
+                        Byte triggerResult = log.getTriggerResult();
+                        logMap.put("triggerResult", Objects.equals(triggerResult, (byte)1) ? "成功" : "失败");
+                        Byte jobRunResult = log.getJobRunResult();
+                        logMap.put("jobRunResult", Objects.equals(jobRunResult, (byte)1) ? "成功" : "失败");
+                        logMap.put("runFailRetryCount", log.getRunFailRetryCount());
+                        logMap.put("runAddressList", log.getRunAddressList());
+                        return logMap;
+                    }).collect(Collectors.toList());
+        }
 
-        return Result.ok(jobLogList);
+        return Result.ok(logMapList);
     }
 }

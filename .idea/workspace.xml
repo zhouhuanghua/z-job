@@ -5,52 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a24b37a-da43-4040-b3fa-a535822bd619" name="Default" comment="第七次提交">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/BaseServiceImpl.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/base/ActiveRecord.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/base/ActiveRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/config/RegisterJobOnAppStart.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/config/RegisterJobOnAppStart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobAppController.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobAppController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobInfoController.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobInfoController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/img/logo2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sql/create_table.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobLogController.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobLogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/dao/JobInfoDao.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/dao/JobInfoDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobApp.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobInfo.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobLog.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/entity/JobLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/enums/CreateWayEnum.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/enums/CreateWayEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/enums/EnabledEnum.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/enums/EnabledEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/JobInvoker.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/JobInvoker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/QuartzJob.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/QuartzJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/req/JobInfoAddReq.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/req/JobInfoAddReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/rsp/JobInfoPageQueryRsp.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/rsp/JobInfoPageQueryRsp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppService.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppServiceImpl.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoService.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoServiceImpl.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogService.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogServiceImpl.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/util/BeanUtils.java" afterPath="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/util/BeanUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/application.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-app/add.html" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-app/add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-app/list.html" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-app/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/add.html" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/common/my.js" afterPath="$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/common/my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/test/java/cn/zhh/admin/base/ActiveRecordTest.java" afterPath="$PROJECT_DIR$/z-job-admin/src/test/java/cn/zhh/admin/base/ActiveRecordTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-admin/src/test/java/cn/zhh/admin/service/JobAppServiceImplTest.java" afterPath="$PROJECT_DIR$/z-job-admin/src/test/java/cn/zhh/admin/service/JobAppServiceImplTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/pom.xml" afterPath="$PROJECT_DIR$/z-job-core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/annotation/EnableJobAutoConfiguration.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/annotation/EnableJobAutoConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobAutoConfigurationRegistrar.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobAutoConfigurationRegistrar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobConfiguration.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobInvokeServletRegistrar.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobInvokeServletRegistrar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/executor/JobExecutor.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/executor/JobExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/IJobHandler.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/IJobHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/JobInvokeReq.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/JobInvokeReq.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/JobInvokeRsp.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/handler/JobInvokeRsp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/util/NetUtil.java" afterPath="$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/util/NetUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/ZJobExampleApplication.java" afterPath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/ZJobExampleApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/job/DemoJob.java" afterPath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/job/DemoJob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/job/DemoJob2.java" afterPath="$PROJECT_DIR$/z-job-example/src/main/java/cn/zhh/job/DemoJob2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z-job-example/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/z-job-example/src/main/resources/application.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/z-job-admin/target/" />
@@ -89,10 +55,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Interface" />
         <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -109,11 +75,13 @@
       <find>JobInvokeRsp</find>
       <find>reduce</find>
       <find>reduce(</find>
+      <find>lib.left_navigation</find>
     </findStrings>
     <replaceStrings>
       <replace>JobResponse</replace>
       <replace>content</replace>
       <replace>JobApp</replace>
+      <replace>lib/left_navigation</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -122,17 +90,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/base/ActiveRecord.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/util/BeanUtils.java" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/demo.html" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/index1.html" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/main.html" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-app/list.html" />
         <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobLogController.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogService.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogServiceImpl.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/rsp/JobInfoPageQueryRsp.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobInfoController.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/QuartzJob.java" />
-        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppServiceImpl.java" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/sql/create_table.sql" />
+        <option value="$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html" />
       </list>
     </option>
   </component>
@@ -165,7 +133,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -422,7 +390,9 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -438,6 +408,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -453,15 +425,65 @@
             <path>
               <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
               <item name="z-job" type="462c0819:PsiDirectoryNode" />
-              <item name="z-job-core" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="z-job" type="b2602c69:ProjectViewProjectNode" />
+              <item name="z-job" type="462c0819:PsiDirectoryNode" />
+              <item name="z-job-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="job-info" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -480,8 +502,8 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -493,14 +515,8 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\common" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\jquery" />
-      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\java\cn\zhh\admin\entity" />
-      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\job-info" />
-      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\bootstrap" />
       <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static" />
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.zhh.admin.controller" />
@@ -508,6 +524,13 @@
       <recent name="cn.zhh.admin.aspect" />
       <recent name="cn.zhh" />
       <recent name="cn.zhh.admin.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\left_navigation\img" />
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\left_navigation\js" />
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static" />
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\resources\static\lib\jquery" />
+      <recent name="D:\IdeaProjects\z-job\z-job-admin\src\main\java\cn\zhh\admin\entity" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="cn.zhh.admin.service" />
@@ -615,7 +638,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ZJobAdminApplication">
+  <component name="RunManager" selected="Spring Boot.ZJobExampleApplication">
     <configuration name="AutoGenSetterCodeUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -745,8 +768,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Spring Boot.ZJobExampleApplication" />
-        <item index="1" class="java.lang.String" itemvalue="Spring Boot.ZJobAdminApplication" />
+        <item index="0" class="java.lang.String" itemvalue="Spring Boot.ZJobAdminApplication" />
+        <item index="1" class="java.lang.String" itemvalue="Spring Boot.ZJobExampleApplication" />
         <item index="2" class="java.lang.String" itemvalue="Application.AutoGenSetterCodeUtils" />
       </list>
     </recent_temporary>
@@ -769,7 +792,8 @@
       <workItem from="1562342440212" duration="1269000" />
       <workItem from="1562343806117" duration="17114000" />
       <workItem from="1562410931277" duration="32729000" />
-      <workItem from="1562473544421" duration="42023000" />
+      <workItem from="1562473544421" duration="42289000" />
+      <workItem from="1562586952829" duration="16169000" />
     </task>
     <servers />
   </component>
@@ -806,10 +830,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134598000" />
+    <option name="totallyTimeSpent" value="151033000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1065" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1065" extended-state="1" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -819,15 +843,15 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.5347299" sideWeight="0.5053305" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49573562" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25746268" sideWeight="0.48815167" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26012793" sideWeight="0.48341233" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50385886" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26012793" sideWeight="0.5165877" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49614114" order="1" side_tool="false" content_ui="tabs" />
@@ -869,10 +893,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49573562" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25746268" sideWeight="0.48815167" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26012793" sideWeight="0.48341233" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50385886" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26012793" sideWeight="0.5165877" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50385886" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -909,97 +933,84 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="148" column="25" lean-forward="false" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/img/logo-dark.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/base/ActiveRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/img/logo2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="72" column="21" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
-          <folding>
-            <element signature="e#2415#2416#0" expanded="true" />
-            <element signature="e#2460#2461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/JobInvoker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="407">
+          <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/config/JobInvokeServletRegistrar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-419">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/config/RegisterJobOnAppStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-core/src/main/java/cn/zhh/core/executor/JobExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1793">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/resources/static/lib/left_navigation/img/left.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/job/QuartzJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="88" column="59" lean-forward="false" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+        <state relative-caret-position="83">
+          <caret line="73" column="45" lean-forward="true" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/controller/JobLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding>
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobLogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="50" column="72" lean-forward="true" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobInfoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+        <state relative-caret-position="182">
+          <caret line="277" column="86" lean-forward="true" selection-start-line="277" selection-start-column="12" selection-end-line="277" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/java/cn/zhh/admin/service/JobAppServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/sql/create_table.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+        <state relative-caret-position="1275">
+          <caret line="51" column="37" lean-forward="false" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z-job-admin/src/main/resources/static/job-info/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
           <folding />
         </state>
       </provider>

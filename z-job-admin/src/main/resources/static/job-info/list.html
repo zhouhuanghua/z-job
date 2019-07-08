@@ -7,15 +7,13 @@
     <script src="/lib/vue/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.js"></script>
     <script src="/lib/common/my.js"></script>
 </head>
 <body>
 <div class="container">
 
-    <h3><a href="/">首页</a></h3>
-    <div align="right">
-        <button type="button" class="btn btn-info" @click="add()">添加任务</button>
-    </div>
+    <h3>任务列表</h3>
 
     <table class="table table-hover">
         <thead>
@@ -33,6 +31,7 @@
         </thead>
         <tbody>
         <tr v-for="(item, index) of page.records" :key="index">
+            <td hidden>{{item.id}}</td>
             <td>{{index + 1}}</td>
             <td>{{item.jobAppName}}</td>
             <td>{{item.jobName}}</td>
@@ -42,12 +41,25 @@
             <td>{{item.triggerNextTime}}</td>
             <td v-text="enabledConvert(item.enabled, '未知')"></td>
             <td>
-                <button type="button" class="btn btn-warning" v-if="item.enabled == 1" @click="disable(item.id)">停用</button>
-                <button type="button" class="btn btn-success" v-if="item.enabled == 0" @click="enable(item.id)">启用</button>
-                <button type="button" class="btn btn-secondary" @click="run(item.id)">调用</button>
-                <button type="button" class="btn" v-if="item.enabled == 0" @click="edit(item.id)">编辑</button>
-                <button type="button" class="btn btn-danger" v-if="item.enabled == 0" @click="del(item.id)">删除</button>
-                <button type="button" class="btn btn-info" @click="log(item.id)">查看调度日志</button>
+                <button type="button" class="btn btn-warning" v-if="item.enabled == 1" @click="disable(item.id)" title="停用任务">
+                    停用
+                </button>
+                <button type="button" class="btn btn-success" v-if="item.enabled == 0" @click="enable(item.id)" title="启用任务">
+                    启用
+                </button>
+                <button type="button" class="btn btn-secondary" @click="run(item.id)" title="运行任务">
+                    调用
+                </button>
+                <button type="button" class="btn" v-if="item.enabled == 0" @click="edit(item.id)" title="修改任务信息">
+                    编辑
+                </button>
+                <button type="button" class="btn btn-danger" v-if="item.enabled == 0" @click="del(item.id)" title="删除该任务">
+                    删除
+                </button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-placement="bottom" title="查看调度日志记录!"
+                data-target="#logModal" title="查看调度日志" :data-jobid="item.id">
+                    查看调度日志
+                </button>
             </td>
         </tr>
         </tbody>
@@ -65,6 +77,44 @@
         </li>
         <li class="page-item"><a class="page-link" @click="query(page.current+1)">下一页</a></li>
     </ul>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="logModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">任务调度日志</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th width="25%">调度起止时间</th>
+                                <th width="18%">调度结果</th>
+                                <th width="20%">任务执行结果</th>
+                                <th width="12%">重试次数</th>
+                                <th width="25%">调用地址</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logModal-tBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-primary" id="confirmActiveBtn">提交</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 <script>
@@ -178,6 +228,42 @@
     function reload() {
         window.location.reload();
     }
+
+    <!-- 模态框相关开始 -->
+    $(function(){
+        $("#logModal").modal("hide");
+    });
+    $("#logModal").on("show.bs.modal",function(e){
+        var jobid = $(e.relatedTarget).data("jobid");
+        $.get("/job/log/query_by_job?jobId=" + jobid, function (result) {
+            if (result.code == 200) {
+                var data = result.content;
+                var dataSize = data.length;
+                if (dataSize < 1) {
+                    $("#logModal-tBody").html("No Data...");
+                    return;
+                }
+                var body = "";
+                for (var i = 0; i < data.length; i++) {
+                    var log = data[i];
+                    body += "<tr><td>" + log.triggerStartTime + "<br/>" + log.triggerEndTime + "</td>"
+                            + "<td>" + log.triggerResult + "</td>"
+                            + "<td>" + log.jobRunResult + "</td>"
+                            + "<td>" + log.runFailRetryCount + "</td>"
+                            + "<td>" + log.runAddressList + "</td></tr>"
+                }
+                $("#logModal-tBody").html(body);
+                return;
+            }
+            MyAlert(result.msg);
+        });
+
+    });
+    $("#logModal").on("hidden.bs.modal", function (e) {
+        $("#logModal-tBody").html("No Data...");
+    });
+    <!-- 模态框相关结束 -->
+
 </script>
 </body>
 </html>

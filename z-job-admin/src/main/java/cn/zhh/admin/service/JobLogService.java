@@ -4,6 +4,7 @@ import cn.zhh.admin.entity.JobLog;
 import cn.zhh.admin.rsp.Result;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO
@@ -17,5 +18,5 @@ public interface JobLogService {
 
     Result<JobLog> insert(JobLog jobLog);
 
-    Result<List<JobLog>> queryByJobId(Long jobId);
+    Result<List<Map>> queryByJobId(Long jobId);
 }
