@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 任务日志控制器
+ *
+ * @author z_hh
+ */
 @RestController
 @RequestMapping("/job/log")
 @Slf4j

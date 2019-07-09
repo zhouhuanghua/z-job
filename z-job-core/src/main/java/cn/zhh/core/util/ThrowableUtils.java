@@ -8,6 +8,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Objects;
 
+/**
+ * 异常处理工具
+ *
+ * @author z_hh
+ */
 @Slf4j
 public class ThrowableUtils {
 
@@ -43,10 +48,10 @@ public class ThrowableUtils {
         }
     }
 
-    public static String sub1000ThrowableStackTrace(Throwable throwable) {
+    public static String sub3000ThrowableStackTrace(Throwable throwable) {
         String throwableStackTrace = getThrowableStackTrace(throwable);
-        if (StringUtils.hasText(throwableStackTrace) && throwableStackTrace.length() > 1000) {
-            return throwableStackTrace.substring(0, 1000);
+        if (StringUtils.hasText(throwableStackTrace) && throwableStackTrace.length() > 3000) {
+            return throwableStackTrace.substring(0, 3000);
         }
         return throwableStackTrace;
     }

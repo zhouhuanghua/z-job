@@ -2,6 +2,11 @@ package cn.zhh.admin.enums;
 
 import lombok.Getter;
 
+/**
+ * 创建方式枚举
+ *
+ * @author z_hh
+ */
 public enum CreateWayEnum {
 
     AUTO((byte)0, "自动"),

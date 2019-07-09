@@ -2,6 +2,11 @@ package cn.zhh.admin.enums;
 
 import lombok.Getter;
 
+/**
+ * 是否删除枚举
+ *
+ * @author z_hh
+ */
 public enum IsDeletedEnum {
 
     YES((byte)1, "已删除"),

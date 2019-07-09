@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableJobAutoConfiguration(adminIp = "127.0.0.1",
 	adminPort = 8080,
 	appName = "example",
-	appDesc = "实例定时器")
+	appDesc = "示例定时器")
 public class ZJobExampleApplication {
 
 	public static void main(String[] args) {

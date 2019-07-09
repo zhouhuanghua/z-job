@@ -12,10 +12,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 任务信息
  *
- * @author zhh
- * @date 20190706
+ * @author z_hh
  */
 @Data
 @Entity(name = "z_job_info")

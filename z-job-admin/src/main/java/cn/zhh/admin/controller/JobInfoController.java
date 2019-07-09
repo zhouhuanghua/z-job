@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
+/**
+ * 任务信息控制器
+ *
+ * @author z_hh
+ */
 @RestController
 @RequestMapping("/job/info")
 @Slf4j

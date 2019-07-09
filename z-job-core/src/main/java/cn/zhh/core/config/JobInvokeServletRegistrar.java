@@ -53,7 +53,7 @@ public class JobInvokeServletRegistrar<JobInvokeServlet> extends ServletRegistra
                 log.info("【任务调度平台】执行作业：req={}，rsp={}", reqAndRsp.getKey(), reqAndRsp.getValue());
             } catch (Throwable t) {
                 log.warn("任务调用异常：{}", ThrowableUtils.getThrowableStackTrace(t));
-                String result = "{\"code\":0,\"msg\":\"" + ThrowableUtils.sub1000ThrowableStackTrace(t) + "\"}";
+                String result = "{\"code\":0,\"msg\":\"" + ThrowableUtils.sub3000ThrowableStackTrace(t) + "\"}";
                 resp.getOutputStream().write(result.getBytes(Charset.defaultCharset()));
             }
         }

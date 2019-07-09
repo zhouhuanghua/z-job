@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
  * 自定义分页数据
  *
  * @author z_hh
- * @date 2019/7/6
  */
 @Data
 public class Page<T> implements Serializable {

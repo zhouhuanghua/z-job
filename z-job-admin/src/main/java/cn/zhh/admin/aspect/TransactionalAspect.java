@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * 对Spring的事务注解@Transactional做进一步处理，
  * 结合Service的返回值类型Result，做出是否启动事务回滚
  *
- * @author zhh
+ * @author z_hh
  */
 public class TransactionalAspect {
 

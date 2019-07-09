@@ -1,4 +1,4 @@
-package cn.zhh;
+package cn.zhh.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

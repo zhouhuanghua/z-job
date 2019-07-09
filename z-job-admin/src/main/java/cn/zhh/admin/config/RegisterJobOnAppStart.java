@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 /**
+ * 应用启动后注册定时任务
  *
  * @author z_hh
  */

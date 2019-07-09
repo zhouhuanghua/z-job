@@ -19,6 +19,11 @@ import org.springframework.util.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Quartz任务
+ *
+ * @author z_hh
+ */
 @Slf4j
 public class QuartzJob implements Job {
 
@@ -51,7 +56,7 @@ public class QuartzJob implements Job {
         } catch (Throwable t) {
             log.warn("任务{}调度出现异常：{}", jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
             jobLog.setTriggerResult((byte)0);
-            jobLog.setTriggerMsg("调度异常：" + ThrowableUtils.sub1000ThrowableStackTrace(t));
+            jobLog.setTriggerMsg("调度异常：" + ThrowableUtils.sub3000ThrowableStackTrace(t));
         }
         jobLog.setTriggerEndTime(new Date());
         // 记录任务的本次和下次调用时间
@@ -91,7 +96,7 @@ public class QuartzJob implements Job {
                 log.warn("调用{}的{}任务失败：{}", address, jobInfo.getJobName(), jobInvokeRsp.getMsg());
             } catch (Throwable t) {
                 log.warn("调用{}的{}任务时出现异常：{}", address, jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
-                jobInvokeRsp = JobInvokeRsp.error("任务调用异常：" + ThrowableUtils.sub1000ThrowableStackTrace(t));
+                jobInvokeRsp = JobInvokeRsp.error("任务调用异常：" + ThrowableUtils.sub3000ThrowableStackTrace(t));
             }
             iterator.remove();
         }

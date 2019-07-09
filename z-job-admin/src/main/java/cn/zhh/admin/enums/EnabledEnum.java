@@ -2,6 +2,11 @@ package cn.zhh.admin.enums;
 
 import lombok.Getter;
 
+/**
+ * 是否启用枚举
+ *
+ * @author z_hh
+ */
 public enum EnabledEnum {
 
     YES((byte)1, "启用"),

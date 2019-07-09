@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * 任务调度器
+ *
+ * @author z_hh
+ */
 @Component
 public class JobInvoker {
 

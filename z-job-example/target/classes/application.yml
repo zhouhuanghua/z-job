@@ -1,7 +1,2 @@
 server:
   port: 8088
-
-z:
-  job:
-    adminAddress: http://localhost:8080/job/group/auto_register
-    appName: example

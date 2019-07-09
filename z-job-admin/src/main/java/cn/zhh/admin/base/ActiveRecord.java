@@ -13,6 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * AR模式的实体基类
+ *
+ * @author z_hh
+ */
 public class ActiveRecord<T extends ActiveRecord, ID, DAO> {
 
     private JpaRepository<T, ID> jpaRepository;

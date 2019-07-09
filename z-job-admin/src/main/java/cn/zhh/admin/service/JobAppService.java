@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TODO
+ * 任务应用服务接口
  *
- * @author Zhou Huanghua
- * @date 2019/7/3 14:49
+ * @author z_hh
  */
 public interface JobAppService {
 

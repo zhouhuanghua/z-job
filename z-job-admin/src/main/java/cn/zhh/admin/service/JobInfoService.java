@@ -8,10 +8,9 @@ import cn.zhh.admin.rsp.Result;
 import java.util.List;
 
 /**
- * TODO
+ * 任务信息服务接口
  *
- * @author Zhou Huanghua
- * @date 2019/7/3 14:49
+ * @author z_hh
  */
 public interface JobInfoService {
 

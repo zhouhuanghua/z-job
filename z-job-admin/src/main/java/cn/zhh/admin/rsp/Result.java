@@ -6,6 +6,11 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * 通用结果返回对象
+ *
+ * @author z_hh
+ */
 @ToString
 public class Result<T> implements Serializable {
 

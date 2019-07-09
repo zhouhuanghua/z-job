@@ -8,10 +8,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO
+ * 邮件发送服务
  *
- * @author Zhou Huanghua
- * @date 2019/7/9 11:20
+ * @author z_hh
  */
 @Component
 public class MailSendService {

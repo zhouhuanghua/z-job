@@ -44,9 +44,9 @@ CREATE TABLE `z_job_log` (
   `trigger_start_time` datetime NOT NULL COMMENT '调度开始时间',
   `trigger_end_time` datetime NOT NULL COMMENT '调度结束时间',
   `trigger_result` tinyint(1) NOT NULL COMMENT '调度结果：1-成功，0-失败',
-  `trigger_msg` varchar(4000) DEFAULT '' COMMENT '调度日志',
+  `trigger_msg` varchar(3000) DEFAULT '' COMMENT '调度日志',
   `job_run_result` tinyint(1) DEFAULT '0' COMMENT '任务执行结果：1-成功，0-失败',
-  `job_run_msg` varchar(4000) DEFAULT '' COMMENT '任务执行日志',
+  `job_run_msg` varchar(3000) DEFAULT '' COMMENT '任务执行日志',
   PRIMARY KEY (`id`),
   KEY `idx_job_id` (`job_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

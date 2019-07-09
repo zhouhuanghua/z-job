@@ -15,10 +15,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * TODO
+ * 任务日志服务
  *
- * @author Zhou Huanghua
- * @date 2019/7/3 14:51
+ * @author z_hh
  */
 @Service
 public class JobLogServiceImpl implements JobLogService {

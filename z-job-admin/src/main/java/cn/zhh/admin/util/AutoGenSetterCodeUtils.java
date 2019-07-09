@@ -5,6 +5,11 @@ import cn.zhh.admin.entity.JobLog;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
+/**
+ * 自动生成Setter方法代码工具类
+ *
+ * @author z_hh
+ */
 public class AutoGenSetterCodeUtils {
 
     public static void main(String[] args) {

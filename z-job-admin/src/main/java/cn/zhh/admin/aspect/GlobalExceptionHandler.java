@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * TODO
+ * 全局异常处理器
  *
- * @author Zhou Huanghua
- * @date 2019/7/9 11:07
+ * @author z_hh
  */
 @RestControllerAdvice
 @Slf4j

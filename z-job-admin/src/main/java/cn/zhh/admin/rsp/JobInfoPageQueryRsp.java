@@ -8,10 +8,9 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * 任务分页查询响应对象
+ * 任务信息分页查询请求
  *
  * @author z_hh
- * @date 2019/7/6
  */
 @Data
 public class JobInfoPageQueryRsp implements Serializable {

@@ -4,10 +4,9 @@ import cn.zhh.admin.entity.JobApp;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * JobAppDao
+ * JobAppDAO
  *
- * @author Zhou Huanghua
- * @date 2019/7/3 14:44
+ * @author z_hh
  */
 public interface JobAppDao extends JpaRepository<JobApp, Long> {
 }
