@@ -47,8 +47,8 @@
                 <button type="button" class="btn btn-success" v-if="item.enabled == 0" @click="enable(item.id)" title="启用任务">
                     启用
                 </button>
-                <button type="button" class="btn btn-secondary" @click="run(item.id)" title="运行任务">
-                    调用
+                <button type="button" class="btn btn-secondary" @click="run(item.id)" title="手动调度任务">
+                    调度
                 </button>
                 <button type="button" class="btn" v-if="item.enabled == 0" @click="edit(item.id)" title="修改任务信息">
                     编辑
@@ -56,7 +56,7 @@
                 <button type="button" class="btn btn-danger" v-if="item.enabled == 0" @click="del(item.id)" title="删除该任务">
                     删除
                 </button>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-placement="bottom" title="查看调度日志记录!"
+                <button type="button" class="btn btn-info" data-toggle="modal" data-placement="bottom"
                 data-target="#logModal" title="查看调度日志" :data-jobid="item.id">
                     查看调度日志
                 </button>
@@ -247,8 +247,16 @@
                 for (var i = 0; i < data.length; i++) {
                     var log = data[i];
                     body += "<tr><td>" + log.triggerStartTime + "<br/>" + log.triggerEndTime + "</td>"
-                            + "<td>" + log.triggerResult + "</td>"
-                            + "<td>" + log.jobRunResult + "</td>"
+                            + "<td>" + log.triggerResult;
+                    if (log.triggerResult != "成功") {
+                        body += "<span style='color: orange;font-size: xx-small' title='" + log.triggerMsd + "'>鼠标放这里查看详情</span>"
+                    }
+                    body += "</td>"
+                            + "<td>" + log.jobRunResult;
+                    if (log.jobRunResult != "成功") {
+                        body += "<span style='color: orange;font-size: xx-small' title='" + log.jobRunMsg + "'>鼠标放这里查看详情</span>"
+                    }
+                    body += "</td>"
                             + "<td>" + log.runFailRetryCount + "</td>"
                             + "<td>" + log.runAddressList + "</td></tr>"
                 }

@@ -3,6 +3,7 @@ package cn.zhh.core.executor;
 import cn.zhh.core.config.JobProperties;
 import cn.zhh.core.handler.IJobHandler;
 import cn.zhh.core.handler.JobInvokeRsp;
+import cn.zhh.core.util.ThrowableUtils;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,7 +102,7 @@ public class JobExecutor {
                         Object.class);
                 log.info("【任务调度平台】应用注册到调度中心成功！");
             } catch (Throwable t) {
-                log.warn("【任务调度平台】应用注册到调度中心失败：{}", t.getMessage(), t);
+                log.warn("【任务调度平台】应用注册到调度中心失败：{}", ThrowableUtils.getThrowableStackTrace(t));
             }
         }
     }

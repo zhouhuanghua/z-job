@@ -24,7 +24,7 @@ public class NetUtil {
         try {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            log.error(e.getMessage(), e);
+            log.error("获取IP地址异常：", ThrowableUtils.getThrowableStackTrace(e));
             throw new RuntimeException("获取IP地址异常！");
         }
     }

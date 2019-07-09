@@ -3,6 +3,7 @@ package cn.zhh.core.config;
 import cn.zhh.core.executor.JobExecutor;
 import cn.zhh.core.handler.JobInvokeReq;
 import cn.zhh.core.handler.JobInvokeRsp;
+import cn.zhh.core.util.ThrowableUtils;
 import javafx.util.Pair;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +52,8 @@ public class JobInvokeServletRegistrar<JobInvokeServlet> extends ServletRegistra
                 Pair reqAndRsp = run(req, resp);
                 log.info("【任务调度平台】执行作业：req={}，rsp={}", reqAndRsp.getKey(), reqAndRsp.getValue());
             } catch (Throwable t) {
-                log.warn("任务调用异常：{}", t.getMessage(), t);
-                String result = "{\"code\":0,\"msg\":\"任务调用异常！\"}";
+                log.warn("任务调用异常：{}", ThrowableUtils.getThrowableStackTrace(t));
+                String result = "{\"code\":0,\"msg\":\"" + ThrowableUtils.sub1000ThrowableStackTrace(t) + "\"}";
                 resp.getOutputStream().write(result.getBytes(Charset.defaultCharset()));
             }
         }

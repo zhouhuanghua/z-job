@@ -12,6 +12,7 @@ import cn.zhh.admin.rsp.Page;
 import cn.zhh.admin.rsp.Result;
 import cn.zhh.admin.util.RandomGetUtils;
 import cn.zhh.core.handler.JobInvokeRsp;
+import cn.zhh.core.util.ThrowableUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.BeanUtils;
@@ -148,7 +149,7 @@ public class JobInfoServiceImpl implements JobInfoService {
         try {
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (SchedulerException e) {
-            log.error("注册任务异常：{}", e.getMessage(), e);
+            log.error("注册任务异常：{}", ThrowableUtils.getThrowableStackTrace(e));
             return Result.err("注册任务异常！");
         }
 
@@ -158,7 +159,7 @@ public class JobInfoServiceImpl implements JobInfoService {
                 scheduler.start();
             }
         } catch (SchedulerException e) {
-            log.error("启动scheduler异常：{}", e.getMessage(), e);
+            log.error("启动scheduler异常：{}", ThrowableUtils.getThrowableStackTrace(e));
             return Result.err("启动scheduler异常！");
         }
 
@@ -221,7 +222,7 @@ public class JobInfoServiceImpl implements JobInfoService {
                 return Result.err("停用定时任务失败！");
             }
         } catch (SchedulerException e) {
-            log.error("停用定时任务异常：{}", e.getMessage(), e);
+            log.error("停用定时任务异常：{}", ThrowableUtils.getThrowableStackTrace(e));
             return Result.err("停用定时任务异常！");
         }
 

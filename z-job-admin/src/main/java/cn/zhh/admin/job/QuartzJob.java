@@ -4,7 +4,11 @@ import cn.zhh.admin.entity.JobApp;
 import cn.zhh.admin.entity.JobInfo;
 import cn.zhh.admin.entity.JobLog;
 import cn.zhh.admin.util.BeanUtils;
+import cn.zhh.admin.util.MailSendService;
 import cn.zhh.core.handler.JobInvokeRsp;
+import cn.zhh.core.util.ThrowableUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
@@ -23,8 +27,11 @@ public class QuartzJob implements Job {
 
     private JobInvoker jobInvoker;
 
+    private MailSendService mailSendService;
+
     public QuartzJob() {
         this.jobInvoker = BeanUtils.getBean(JobInvoker.class);
+        this.mailSendService = BeanUtils.getBean(MailSendService.class);
     }
 
     @Override
@@ -42,9 +49,9 @@ public class QuartzJob implements Job {
             jobLog.setTriggerResult((byte)1);
             jobLog.setTriggerMsg("调度成功！");
         } catch (Throwable t) {
-            log.warn("任务{}调度出现异常：{}", jobInfo.getJobName(), t.getMessage(), t);
+            log.warn("任务{}调度出现异常：{}", jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
             jobLog.setTriggerResult((byte)0);
-            jobLog.setTriggerMsg("调度失败：" + t.getMessage());
+            jobLog.setTriggerMsg("调度异常：" + ThrowableUtils.sub1000ThrowableStackTrace(t));
         }
         jobLog.setTriggerEndTime(new Date());
         // 记录任务的本次和下次调用时间
@@ -56,6 +63,9 @@ public class QuartzJob implements Job {
 
         // 更新任务
         jobInfo.save();
+
+        // 发送邮件
+        sendMail(jobApp, jobInfo, jobLog);
 
         log.info("任务{}调度结束！", jobInfo.getJobName());
     }
@@ -80,8 +90,8 @@ public class QuartzJob implements Job {
                 }
                 log.warn("调用{}的{}任务失败：{}", address, jobInfo.getJobName(), jobInvokeRsp.getMsg());
             } catch (Throwable t) {
-                log.warn("调用{}的{}任务时出现异常：{}", address, jobInfo.getJobName(), t.getMessage(), t);
-                jobInvokeRsp = JobInvokeRsp.error("任务调用异常！");
+                log.warn("调用{}的{}任务时出现异常：{}", address, jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
+                jobInvokeRsp = JobInvokeRsp.error("任务调用异常：" + ThrowableUtils.sub1000ThrowableStackTrace(t));
             }
             iterator.remove();
         }
@@ -93,5 +103,29 @@ public class QuartzJob implements Job {
 
         jobLog.setRunFailRetryCount(Objects.equals(readyRetryCount, -1) ? 0 : readyRetryCount);
         jobLog.setRunAddressList(hasInvokeAddress.stream().reduce((s1, s2) -> s1 + "," + s2).orElse(""));
+    }
+
+    private void sendMail(JobApp jobApp, JobInfo jobInfo, JobLog jobLog) {
+        // 调度失败并且邮件不为空
+        if (Objects.equals(jobLog.getTriggerResult(), (byte)0)
+                || Objects.equals(jobLog.getJobRunResult(), (byte)0)
+                || StringUtils.hasText(jobInfo.getAlarmEmail())) {
+            String alarmEmailStr = jobInfo.getAlarmEmail();
+            List<String> mailList = null;
+            if (alarmEmailStr.contains(",")) {
+                mailList = Arrays.asList(alarmEmailStr.split(","));
+            } else {
+                mailList = Collections.singletonList(alarmEmailStr);
+            }
+            String subject = String.format("应用%s的%s任务调度失败！", jobApp.getAppName(), jobInfo.getJobName());
+            try {
+                String content = new ObjectMapper().writeValueAsString(jobLog);
+                mailList.forEach(m -> {
+                    mailSendService.sendSimpleMail(m, subject, content);
+                });
+            } catch (JsonProcessingException e) {
+                log.error("任务调度失败告警邮件发送失败：{}", ThrowableUtils.getThrowableStackTrace(e));
+            }
+        }
     }
 }

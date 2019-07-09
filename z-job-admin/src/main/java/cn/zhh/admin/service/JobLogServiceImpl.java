@@ -60,8 +60,10 @@ public class JobLogServiceImpl implements JobLogService {
                         logMap.put("triggerEndTime", dateFormat.format(log.getTriggerEndTime()));
                         Byte triggerResult = log.getTriggerResult();
                         logMap.put("triggerResult", Objects.equals(triggerResult, (byte)1) ? "成功" : "失败");
+                        logMap.put("triggerMsf", log.getTriggerMsg());
                         Byte jobRunResult = log.getJobRunResult();
                         logMap.put("jobRunResult", Objects.equals(jobRunResult, (byte)1) ? "成功" : "失败");
+                        logMap.put("jobRunMsg", log.getJobRunMsg());
                         logMap.put("runFailRetryCount", log.getRunFailRetryCount());
                         logMap.put("runAddressList", log.getRunAddressList());
                         return logMap;
