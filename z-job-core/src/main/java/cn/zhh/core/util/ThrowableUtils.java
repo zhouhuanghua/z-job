@@ -45,8 +45,8 @@ public class ThrowableUtils {
 
     public static String sub1000ThrowableStackTrace(Throwable throwable) {
         String throwableStackTrace = getThrowableStackTrace(throwable);
-        if (StringUtils.hasText(throwableStackTrace) && throwableStackTrace.length() > 4000) {
-            return throwableStackTrace.substring(0, 4000);
+        if (StringUtils.hasText(throwableStackTrace) && throwableStackTrace.length() > 1000) {
+            return throwableStackTrace.substring(0, 1000);
         }
         return throwableStackTrace;
     }
