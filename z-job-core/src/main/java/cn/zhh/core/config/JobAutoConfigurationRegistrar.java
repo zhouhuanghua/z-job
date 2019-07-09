@@ -51,7 +51,7 @@ public class JobAutoConfigurationRegistrar implements ImportBeanDefinitionRegist
         jobProperties.setAppName(annotationAttributes.getString("appName"));
         jobProperties.setAppDesc(annotationAttributes.getString("appDesc"));
         jobProperties.setIp(NetUtil.getIp());
-        jobProperties.setPort(environment.getProperty("server.port", Integer.class));
+        jobProperties.setPort(environment.getProperty("server.port", Integer.class, 8080));
 
         AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(JobExecutor.class)
                 .setInitMethodName("init")

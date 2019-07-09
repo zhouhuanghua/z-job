@@ -249,12 +249,12 @@
                     body += "<tr><td>" + log.triggerStartTime + "<br/>" + log.triggerEndTime + "</td>"
                             + "<td>" + log.triggerResult;
                     if (log.triggerResult != "成功") {
-                        body += "<span style='color: orange;font-size: xx-small' title='" + log.triggerMsd + "'>鼠标放这里查看详情</span>"
+                        body += "<p style='color: orange;font-size: xx-small' title='" + log.triggerMsd + "'>鼠标放这里查看详情</p>"
                     }
                     body += "</td>"
                             + "<td>" + log.jobRunResult;
                     if (log.jobRunResult != "成功") {
-                        body += "<span style='color: orange;font-size: xx-small' title='" + log.jobRunMsg + "'>鼠标放这里查看详情</span>"
+                        body += "<p style='color: orange;font-size: xx-small' title='" + log.jobRunMsg + "'>鼠标放这里查看详情</p>"
                     }
                     body += "</td>"
                             + "<td>" + log.runFailRetryCount + "</td>"

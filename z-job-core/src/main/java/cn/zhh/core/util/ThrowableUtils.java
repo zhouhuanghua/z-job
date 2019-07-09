@@ -1,7 +1,6 @@
 package cn.zhh.core.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,13 +45,5 @@ public class ThrowableUtils {
                 log.error("流对象关闭异常！", var11);
             }
         }
-    }
-
-    public static String sub3000ThrowableStackTrace(Throwable throwable) {
-        String throwableStackTrace = getThrowableStackTrace(throwable);
-        if (StringUtils.hasText(throwableStackTrace) && throwableStackTrace.length() > 3000) {
-            return throwableStackTrace.substring(0, 3000);
-        }
-        return throwableStackTrace;
     }
 }

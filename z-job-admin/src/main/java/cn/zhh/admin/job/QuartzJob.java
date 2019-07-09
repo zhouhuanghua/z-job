@@ -54,9 +54,10 @@ public class QuartzJob implements Job {
             jobLog.setTriggerResult((byte)1);
             jobLog.setTriggerMsg("调度成功！");
         } catch (Throwable t) {
-            log.warn("任务{}调度出现异常：{}", jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
+            String msg = ThrowableUtils.getThrowableStackTrace(t);
+            log.warn("任务{}调度出现异常：{}", jobInfo.getJobName(), msg);
             jobLog.setTriggerResult((byte)0);
-            jobLog.setTriggerMsg("调度异常：" + ThrowableUtils.sub3000ThrowableStackTrace(t));
+            jobLog.setTriggerMsg("调度异常：" + msg);
         }
         jobLog.setTriggerEndTime(new Date());
         // 记录任务的本次和下次调用时间
@@ -95,8 +96,9 @@ public class QuartzJob implements Job {
                 }
                 log.warn("调用{}的{}任务失败：{}", address, jobInfo.getJobName(), jobInvokeRsp.getMsg());
             } catch (Throwable t) {
-                log.warn("调用{}的{}任务时出现异常：{}", address, jobInfo.getJobName(), ThrowableUtils.getThrowableStackTrace(t));
-                jobInvokeRsp = JobInvokeRsp.error("任务调用异常：" + ThrowableUtils.sub3000ThrowableStackTrace(t));
+                String msg = ThrowableUtils.getThrowableStackTrace(t);
+                log.warn("调用{}的{}任务时出现异常：{}", address, jobInfo.getJobName(), msg);
+                jobInvokeRsp = JobInvokeRsp.error("任务调用异常：" + msg);
             }
             iterator.remove();
         }
@@ -104,7 +106,7 @@ public class QuartzJob implements Job {
             jobInvokeRsp = JobInvokeRsp.error("没有进行任务调用！");
         }
         jobLog.setJobRunResult(jobInvokeRsp.getCode());
-        jobLog.setJobRunMsg(jobInvokeRsp.getMsg());
+        jobLog.setJobRunMsg(sub3000String(jobInvokeRsp.getMsg()));
 
         jobLog.setRunFailRetryCount(Objects.equals(readyRetryCount, -1) ? 0 : readyRetryCount);
         jobLog.setRunAddressList(hasInvokeAddress.stream().reduce((s1, s2) -> s1 + "," + s2).orElse(""));
@@ -112,9 +114,9 @@ public class QuartzJob implements Job {
 
     private void sendMail(JobApp jobApp, JobInfo jobInfo, JobLog jobLog) {
         // 调度失败并且邮件不为空
-        if (Objects.equals(jobLog.getTriggerResult(), (byte)0)
-                || Objects.equals(jobLog.getJobRunResult(), (byte)0)
-                || StringUtils.hasText(jobInfo.getAlarmEmail())) {
+        if ((Objects.equals(jobLog.getTriggerResult(), (byte)0)
+                || Objects.equals(jobLog.getJobRunResult(), (byte)0))
+                && StringUtils.hasText(jobInfo.getAlarmEmail())) {
             String alarmEmailStr = jobInfo.getAlarmEmail();
             List<String> mailList = null;
             if (alarmEmailStr.contains(",")) {
@@ -132,5 +134,12 @@ public class QuartzJob implements Job {
                 log.error("任务调度失败告警邮件发送失败：{}", ThrowableUtils.getThrowableStackTrace(e));
             }
         }
+    }
+
+    private String sub3000String(String str) {
+        if (StringUtils.hasText(str) && str.length() > 3000) {
+            return str.substring(0, 2888) + "...更多请查看日志记录！";
+        }
+        return str;
     }
 }

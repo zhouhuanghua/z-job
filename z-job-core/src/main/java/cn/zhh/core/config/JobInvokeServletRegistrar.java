@@ -3,6 +3,7 @@ package cn.zhh.core.config;
 import cn.zhh.core.executor.JobExecutor;
 import cn.zhh.core.handler.JobInvokeReq;
 import cn.zhh.core.handler.JobInvokeRsp;
+import cn.zhh.core.util.JsonUtils;
 import cn.zhh.core.util.ThrowableUtils;
 import javafx.util.Pair;
 import lombok.Setter;
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collections;
-import java.util.Optional;
 
 /**
  * 任务调度Servlet
@@ -52,9 +52,10 @@ public class JobInvokeServletRegistrar<JobInvokeServlet> extends ServletRegistra
                 Pair reqAndRsp = run(req, resp);
                 log.info("【任务调度平台】执行作业：req={}，rsp={}", reqAndRsp.getKey(), reqAndRsp.getValue());
             } catch (Throwable t) {
-                log.warn("任务调用异常：{}", ThrowableUtils.getThrowableStackTrace(t));
-                String result = "{\"code\":0,\"msg\":\"" + ThrowableUtils.sub3000ThrowableStackTrace(t) + "\"}";
-                resp.getOutputStream().write(result.getBytes(Charset.defaultCharset()));
+                String msg = ThrowableUtils.getThrowableStackTrace(t);
+                log.warn("任务调用异常：{}", msg);
+                String rspStr = JsonUtils.writeValueAsString(JobInvokeRsp.error(msg));
+                resp.getOutputStream().write(rspStr.getBytes(Charset.defaultCharset()));
             }
         }
 
@@ -69,10 +70,8 @@ public class JobInvokeServletRegistrar<JobInvokeServlet> extends ServletRegistra
             JobInvokeRsp jobInvokeRsp = JobInvokeServletRegistrar.this.jobExecutor.jobInvoke(jobInvokeReq.getName(), jobInvokeReq.getParams());
 
             // 响应结果
-            String result = new StringBuilder().append("{\"code\":").append(Optional.ofNullable(jobInvokeRsp.getCode()).orElse(JobInvokeRsp.SUCCESS_CODE))
-                    .append(",\"msg\":\"").append(jobInvokeRsp.getMsg()).append("\"}")
-                    .toString();
-            resp.getOutputStream().write(result.getBytes(Charset.defaultCharset()));
+            String rspStr = JsonUtils.writeValueAsString(jobInvokeRsp);
+            resp.getOutputStream().write(rspStr.getBytes(Charset.defaultCharset()));
 
             // 返回请求和响应提供日志记录
             return new Pair(jobInvokeReq, jobInvokeRsp);

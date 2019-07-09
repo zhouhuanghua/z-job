@@ -17,7 +17,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     public Result handle(Throwable t) {
-        log.error("统一异常处理：{}", ThrowableUtils.getThrowableStackTrace(t));
-        return Result.err(ThrowableUtils.getThrowableStackTrace(t));
+        String msg = ThrowableUtils.getThrowableStackTrace(t);
+        log.error("统一异常处理：{}", msg);
+        return Result.err(msg);
     }
 }
