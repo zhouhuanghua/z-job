@@ -42,24 +42,43 @@ public class ActiveRecord<T extends ActiveRecord, ID, DAO> {
         });
     }
 
+    /**
+     * 保存this对象
+     *
+     * @return 保存过的对象
+     */
     public T save() {
         return dao().save((T)this);
     }
 
+    /**
+     * 根据this的主键删除数据
+     */
     public void deleteById() {
         dao().deleteById(pkVal());
     }
 
+    /**
+     * 通过this构造Example进行查询
+     *
+     * @return 结果列表
+     */
     public List<T> findAllByExample() {
         return dao().findAll(Example.of((T)this));
     }
 
+    /**
+     * 根据this的主键查询数据
+     *
+     * @return Optional对象
+     */
     public Optional<T> findById() {
         return dao().findById(pkVal());
     }
 
     /**
      * 推荐子类重写该方法，返回主键的值
+     *
      * @return
      */
     protected ID pkVal() {

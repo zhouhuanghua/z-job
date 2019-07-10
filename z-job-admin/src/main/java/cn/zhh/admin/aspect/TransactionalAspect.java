@@ -3,6 +3,8 @@ package cn.zhh.admin.aspect;
 import cn.zhh.admin.rsp.Result;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
@@ -16,6 +18,8 @@ import java.lang.reflect.Method;
  *
  * @author z_hh
  */
+@Aspect
+@Component
 public class TransactionalAspect {
 
     @Around(value = "@annotation(org.springframework.transaction.annotation.Transactional)&&@annotation(transactional)")

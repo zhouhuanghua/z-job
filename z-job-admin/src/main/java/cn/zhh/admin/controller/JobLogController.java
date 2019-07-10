@@ -1,10 +1,10 @@
 package cn.zhh.admin.controller;
 
+import cn.zhh.admin.api.JobLogApi;
 import cn.zhh.admin.rsp.Result;
 import cn.zhh.admin.service.JobLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/job/log")
 @Slf4j
-public class JobLogController {
+public class JobLogController implements JobLogApi {
 
     @Autowired
     private JobLogService jobLogService;
 
 
-    @GetMapping("/query_by_job")
+    @Override
     public Result<?> run(@RequestParam("jobId") Long jobId) {
         return jobLogService.queryByJobId(jobId);
     }

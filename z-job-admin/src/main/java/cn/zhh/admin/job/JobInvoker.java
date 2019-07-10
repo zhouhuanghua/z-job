@@ -23,6 +23,14 @@ public class JobInvoker {
 
     private static final String PATH = "/api/job/invoke";
 
+    /**
+     * 任务调度器
+     *
+     * @param url 目标地址
+     * @param jobHandler 任务名称
+     * @param params 执行参数
+     * @return 调用任务结果
+     */
     public JobInvokeRsp invoke(String url, String jobHandler, String params) {
         JobInvokeReq req = new JobInvokeReq();
         req.setName(jobHandler);

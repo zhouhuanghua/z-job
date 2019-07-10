@@ -1,5 +1,6 @@
 package cn.zhh.admin.controller;
 
+import cn.zhh.admin.api.JobInfoApi;
 import cn.zhh.admin.entity.JobInfo;
 import cn.zhh.admin.enums.CreateWayEnum;
 import cn.zhh.admin.enums.IsDeletedEnum;
@@ -24,19 +25,19 @@ import java.util.Date;
 @RestController
 @RequestMapping("/job/info")
 @Slf4j
-public class JobInfoController {
+public class JobInfoController implements JobInfoApi {
 
     @Autowired
     private JobInfoService jobInfoService;
 
-    @GetMapping("/page_query")
+    @Override
     public Result<Page<JobInfoPageQueryRsp>> pageQuery(@RequestParam(required = false, defaultValue = "1") Integer pageNum,
                                                        @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
         Result<Page<JobInfoPageQueryRsp>> pageResult = jobInfoService.queryByPage(pageNum, pageSize);
         return pageResult;
     }
 
-    @PostMapping("/add")
+    @Override
     public Result<JobInfo> add(JobInfoAddReq addReq) {
         JobInfo jobInfo = new JobInfo();
         BeanUtils.copyProperties(addReq, jobInfo);
@@ -49,8 +50,8 @@ public class JobInfoController {
         return jobInfoService.insert(jobInfo);
     }
 
-    @PostMapping("/modify")
-    public Result<JobInfo>  modify(JobInfoModifyReq modifyReq) {
+    @Override
+    public Result<JobInfo>  modify(@RequestBody JobInfoModifyReq modifyReq) {
         JobInfo jobInfo = new JobInfo();
         BeanUtils.copyProperties(modifyReq, jobInfo);
 
@@ -59,22 +60,22 @@ public class JobInfoController {
         return jobInfoService.update(jobInfo);
     }
 
-    @GetMapping("/delete/{id:[\\d]+}")
+    @Override
     public Result<?> delete(@PathVariable("id") Long id) {
         return jobInfoService.deleteById(id);
     }
 
-    @GetMapping("/enable/{id:[\\d]+}")
+    @Override
     public Result<?> enable(@PathVariable("id") Long id) {
         return jobInfoService.enable(id);
     }
 
-    @GetMapping("/disable/{id:[\\d]+}")
+    @Override
     public Result<?> disable(@PathVariable("id") Long id) {
         return jobInfoService.disable(id);
     }
 
-    @GetMapping("/run/{id:[\\d]+}")
+    @Override
     public Result<?> run(@PathVariable("id") Long id) {
         return jobInfoService.run(id);
     }
