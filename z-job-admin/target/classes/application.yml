@@ -6,6 +6,7 @@ spring:
     url: jdbc:mysql://thunderclap.cn:9527/z_job?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: z_job
     password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
     jpa:
         database: MySQL
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -13,6 +14,13 @@ spring:
         hibernate:
           ddl-auto: update
     hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
       connection-test-query: SELECT 1
 
   # 发送邮箱配置

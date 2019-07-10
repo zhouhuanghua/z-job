@@ -4,6 +4,9 @@
     <title>添加应用</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <script src="/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/lib/jquery/jquery.form.js"></script>
+    <script src="/lib/common/my.js"></script>
 </head>
 <body>
 <form class="form-horizontal" role="form" action="/job/app/manual_add" method="post">
@@ -42,5 +45,32 @@
         <button type="submit" class="btn btn-primary">提交</button>
     </div>
 </form>
+
+<script>
+    $(".btn-secondary").on("click", function(){
+        back();
+    })
+
+    $(".btn-primary").on("click", function(){
+        $(".alert").hide();
+        $(".form-horizontal").ajaxSubmit({
+            success : function(result){
+                if (result.code == 200) {
+                    MyAlert(result.msg, back());
+                } else {
+                    MyAlert(result.msg);
+                }
+            },
+            error : function(){
+                MyAlert("系统异常，请稍后再试！");
+            }
+        });
+    })
+
+    function back() {
+        history.go(-1);
+    }
+
+</script>
 </body>
 </html>
