@@ -13,7 +13,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<quartz-scheduler-version>2.2.2</quartz-scheduler-version>
+		<quartz-scheduler-version>2.3.2</quartz-scheduler-version>
 	</properties>
 
 	<dependencies>
